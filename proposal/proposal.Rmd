@@ -1,6 +1,6 @@
 ---
 title: "Project proposal"
-author: "Team name"
+author: "Team ACE"
 output: github_document
 ---
 
@@ -13,7 +13,7 @@ library(broom)
 
 ```{r}
 #example of importing data by a path
-data <- readr::read_csv(file = "../data/my_data.csv")
+#data <- readr::read_csv(file = "../data/my_data.csv")
 ```
 
 

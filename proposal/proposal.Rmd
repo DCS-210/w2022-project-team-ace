@@ -1,7 +1,9 @@
 ---
 title: "Project proposal"
-author: "Team Ace"
-
+author: "Team ACE"
+output: github_document
+---
+>>>>>>> 67d77065d4a5552ad8555a34148030c6768a539d
 
 ```{r load-packages, message = FALSE}
 library(tidyverse)
@@ -22,10 +24,6 @@ Our sub topics include:
 
 
 
-
-
-
-#Import us disaster declarations data
 
 ```{r load-data-US disaster declarations, message=FALSE}
 #Import US disaster declarations data

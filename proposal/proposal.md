@@ -1,10 +1,8 @@
 Project proposal
 ================
-<<<<<<< HEAD
-Team Ace
-=======
 Team ACE
->>>>>>> 8fdf0f6a0e8be1f0be54c5739c4f4973662c40ed
+
+> > > > > > > 67d77065d4a5552ad8555a34148030c6768a539d
 
 ``` r
 library(tidyverse)
@@ -13,32 +11,14 @@ library(broom)
 
 ## 1. Introduction
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8fdf0f6a0e8be1f0be54c5739c4f4973662c40ed
 Our research question is “How does increasing global temperatures
 measured by city predict the number of natural disasters in the same
 area?” Our data for global temperatures by city was found using kaggle’s
 climate change database. Our data ranges from 1750 to 2015, and has 32
 columns representing variables with information regarding min, max, and
-average land temperature. \<\<\<\<\<\<\< HEAD
+average land temperature.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-## 2. Data
-
-## 3. Data analysis plan
-
-The first analysis we will do is to visualize how global temperatures
-can be used as a predictor for the number of wildfires in a given year
-within a specific area.
-=======
-=======
-Sub topics:
-=======
 Our sub topics include:
->>>>>>> a359559d844d59392360251fa33948c9d38adb34
 
 1.  Global temp and wildfires
 2.  Global temp and droughts
@@ -135,11 +115,8 @@ glimpse(wildfires)
     ## $ Prec_cont        <dbl> 0.0, 86.8, 124.5, 0.0, -1.0, -1.0, 0.0, 55.4, 46.4, 0…
     ## $ remoteness       <dbl> 0.01792339, 0.18435495, 0.19454351, 0.48744745, 0.214…
 
-<<<<<<< HEAD
->>>>>>> 8fdf0f6a0e8be1f0be54c5739c4f4973662c40ed
-## 2. Data
-
-=======
->>>>>>> 67d77065d4a5552ad8555a34148030c6768a539d
 ## 3. Data analysis plan
->>>>>>> 33d7f9bcecb5a58c5817aa1098708a893cc33ed2
+
+The first analysis we will do is to visualize how global temperatures
+can be used as a predictor for the number of wildfires in a given year
+within a specific area.

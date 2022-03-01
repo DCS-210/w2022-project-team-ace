@@ -186,10 +186,8 @@ US_temp %>%
 
 ``` r
 disaster_data %>%
-  filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood",
-                              "Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm",
-                              "Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
-                              "Volcano")) %>%
+  filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
+"Volcano")) %>%
   ggplot(mapping = aes(x = fy_declared)) +
     geom_histogram(binwidth = 30) + 
     facet_wrap( ~ incident_type) +

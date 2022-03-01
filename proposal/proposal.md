@@ -24,7 +24,6 @@ Our sub topics include:
 4.  Global temp and hurricanes
 
 ``` r
-#Import US disaster declarations data
 disaster_data <- readr::read_csv(file = "../data/us_disaster_declarations.csv")
 glimpse(disaster_data)
 ```
@@ -53,11 +52,6 @@ glimpse(disaster_data)
     ## $ hash                       <chr> "bb121323c9c29d3bef0c9a3f134bfd8b5ecff148",…
     ## $ last_refresh               <dttm> 2021-07-13 23:01:19, 2021-07-13 23:01:19, …
     ## $ id                         <chr> "60c3b7a9a0ee349d71025780", "60c3b7a9a0ee34…
-
-``` r
-#global_temp <- readr::read_csv(file = "../data/GlobalLandTemperaturesByCity.csv")
-#glimpse(global_temp)
-```
 
 ``` r
 wildfires <- readr::read_csv(file = "../data/FW_Veg_Rem_Combined.csv")
@@ -113,6 +107,21 @@ glimpse(wildfires)
     ## $ Prec_cont        <dbl> 0.0, 86.8, 124.5, 0.0, -1.0, -1.0, 0.0, 55.4, 46.4, 0…
     ## $ remoteness       <dbl> 0.01792339, 0.18435495, 0.19454351, 0.48744745, 0.214…
 
+``` r
+US_temp <- readr::read_csv(file = "../data/US_temps.csv")
+glimpse(US_temp)
+```
+
+    ## Rows: 687,289
+    ## Columns: 7
+    ## $ dt                            <date> 1820-01-01, 1820-02-01, 1820-03-01, 182…
+    ## $ AverageTemperature            <dbl> 2.101, 6.926, 10.767, 17.989, 21.809, 25…
+    ## $ AverageTemperatureUncertainty <dbl> 3.217, 2.853, 2.395, 2.202, 2.036, 2.008…
+    ## $ City                          <chr> "Abilene", "Abilene", "Abilene", "Abilen…
+    ## $ Country                       <chr> "United States", "United States", "Unite…
+    ## $ Latitude                      <chr> "32.95N", "32.95N", "32.95N", "32.95N", …
+    ## $ Longitude                     <chr> "100.53W", "100.53W", "100.53W", "100.53…
+
 ## 2. Data
 
 Some of our data sources include: 1. Csv file from kaggle with global
@@ -130,13 +139,13 @@ The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
 within a specific area.
 
-STATISTICAL METHODS
+### STATISTICAL METHODS
 
 Some statistical methods we should use in our project are linear
 regressions to determine how correlated the two datasets are and some
 statistical significance tests to see if our conclusions are reliable.
 
-RESULTS NEEDED
+### RESULTS NEEDED
 
 For our question to be answered, we would need a significantly
 correlated dataset that would either show a positive association or
@@ -146,14 +155,13 @@ probability.
 ## Example of relevant graphs
 
 ``` r
-wf_hist <- ggplot(data = wildfires,
-                  mapping = aes(x = disc_pre_year)) + 
-              geom_histogram(binwidth = 1) + 
-              labs(title = "Histogram of wildfires",
-                   subtitle = "From 1991 to 2015",
-                   x = "Year",
-                   y = "Count")
-wf_hist
+ggplot(data = wildfires,
+       mapping = aes(x = disc_pre_year)) + 
+  geom_histogram(binwidth = 1) + 
+  labs(title = "Histogram of wildfires",
+       subtitle = "From 1991 to 2015",
+       x = "Year",
+       y = "Count")
 ```
 
     ## Warning: Removed 8 rows containing non-finite values (stat_bin).
@@ -161,16 +169,31 @@ wf_hist
 ![](proposal_files/figure-gfm/histogram-of-wildfires-1.png)<!-- -->
 
 ``` r
-#san_fran_temp <- global_temps %>%
-  #filter(Country == "United States") %>%
-  #filter(City == "San Francisco") %>%
-    #ggplot(mapping = aes(x = dt, 
-                        # y = AverageTemperature)) + 
-    #geom_smooth() + 
-   # labs(title = "Temperature in San Fransisco, Ca",
-        # subtitle = "Over the past sesquintennial",
-         #x = "Year",
-         #y = "Average Temperature")
-    
-#san_fran_temp
+US_temp %>%
+  filter(City == "San Francisco") %>%
+    ggplot(mapping = aes(x = dt, 
+                         y = AverageTemperature)) + 
+    geom_smooth() + 
+    labs(title = "Temperature in San Fransisco, Ca",
+         subtitle = "Over the past sesquintennial",
+         x = "Year",
+         y = "Average Temperature")
 ```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+![](proposal_files/figure-gfm/san_fran_temps-1.png)<!-- -->
+
+``` r
+disaster_data %>%
+  filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood",
+                              "Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm",
+                              "Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
+                              "Volcano")) %>%
+  ggplot(mapping = aes(x = fy_declared)) +
+    geom_histogram(binwidth = 30) + 
+    facet_wrap( ~ incident_type) +
+    theme(axis.text.x = element_text(angle = 45))
+```
+
+![](proposal_files/figure-gfm/disaster-hist-1.png)<!-- -->

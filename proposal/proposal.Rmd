@@ -26,20 +26,20 @@ Our sub topics include:
 
 
 ```{r load-data-US disaster declarations, message=FALSE}
-#Import US disaster declarations data
 disaster_data <- readr::read_csv(file = "../data/us_disaster_declarations.csv")
 glimpse(disaster_data)
-```
-
-```{r load-data-global_temp, message=FALSE}
-#global_temp <- readr::read_csv(file = "../data/GlobalLandTemperaturesByCity.csv")
-#glimpse(global_temp)
 ```
 
 ```{r load-data-wildfires, message=FALSE}
 wildfires <- readr::read_csv(file = "../data/FW_Veg_Rem_Combined.csv")
 glimpse(wildfires)
 ```
+
+```{r load-data-US_temps, message=FALSE}
+US_temp <- readr::read_csv(file = "../data/US_temps.csv")
+glimpse(US_temp)
+```
+
 
 
 ## 2. Data
@@ -60,39 +60,52 @@ The first analysis we will do is to visualize how global temperatures can be use
 ```
 
 
-STATISTICAL METHODS
+### STATISTICAL METHODS
 
 Some statistical methods we should use in our project are linear regressions to determine how correlated the two datasets are and some statistical significance tests to see if our conclusions are reliable. 
 
 
-RESULTS NEEDED
+### RESULTS NEEDED
 
 For our question to be answered, we would need a significantly correlated dataset that would either show a positive association or negative association between global temperature and wildfire probability. 
 
 ## Example of relevant graphs
 ```{r histogram-of-wildfires}
-wf_hist <- ggplot(data = wildfires,
-                  mapping = aes(x = disc_pre_year)) + 
-              geom_histogram(binwidth = 1) + 
-              labs(title = "Histogram of wildfires",
-                   subtitle = "From 1991 to 2015",
-                   x = "Year",
-                   y = "Count")
-wf_hist
+ggplot(data = wildfires,
+       mapping = aes(x = disc_pre_year)) + 
+  geom_histogram(binwidth = 1) + 
+  labs(title = "Histogram of wildfires",
+       subtitle = "From 1991 to 2015",
+       x = "Year",
+       y = "Count")
+```
 
-#san_fran_temp <- global_temps %>%
-  #filter(Country == "United States") %>%
-  #filter(City == "San Francisco") %>%
-    #ggplot(mapping = aes(x = dt, 
-                        # y = AverageTemperature)) + 
-    #geom_smooth() + 
-   # labs(title = "Temperature in San Fransisco, Ca",
-        # subtitle = "Over the past sesquintennial",
-         #x = "Year",
-         #y = "Average Temperature")
-    
-#san_fran_temp
+```{r san_fran_temps}
+US_temp %>%
+  filter(City == "San Francisco") %>%
+    ggplot(mapping = aes(x = dt, 
+                         y = AverageTemperature)) + 
+    geom_smooth() + 
+    labs(title = "Temperature in San Fransisco, Ca",
+         subtitle = "Over the past sesquintennial",
+         x = "Year",
+         y = "Average Temperature")
 
 ```
+
+```{r disaster-hist}
+disaster_data %>%
+  filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood",
+                              "Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm",
+                              "Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
+                              "Volcano")) %>%
+  ggplot(mapping = aes(x = fy_declared)) +
+    geom_histogram(binwidth = 30) + 
+    facet_wrap( ~ incident_type) +
+    theme(axis.text.x = element_text(angle = 45))
+```
+
+
+
 
 

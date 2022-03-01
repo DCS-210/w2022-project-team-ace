@@ -40,6 +40,16 @@ US_temp <- readr::read_csv(file = "../data/US_temps.csv")
 glimpse(US_temp)
 ```
 
+```{r load-data-sea_lvl, message=FALSE}
+sea_lvl <- readr::read_csv(file = "../data/sealevel.csv")
+glimpse(sea_lvl)
+```
+
+```{r load-data-US_pop, message=FALSE}
+US_pop <- readr::read_csv(file = "../data/uscitypopdensity.csv")
+glimpse(US_pop)
+```
+
 
 
 ## 2. Data

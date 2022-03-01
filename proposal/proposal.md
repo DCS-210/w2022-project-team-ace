@@ -1,6 +1,6 @@
 Project proposal
 ================
-Ace
+Team ACE
 
 ``` r
 library(tidyverse)
@@ -14,7 +14,7 @@ measured by city predict the number of natural disasters in the same
 area?” Our data for global temperatures by city was found using kaggle’s
 climate change database. Our data ranges from 1750 to 2015, and has 32
 columns representing variables with information regarding min, max, and
-average land temperature.
+average land temperature. \<\<\<\<\<\<\< HEAD
 
 Our sub topics include:
 
@@ -64,7 +64,7 @@ wildfires <- readr::read_csv(file = "../data/FW_Veg_Rem_Combined.csv")
 glimpse(wildfires)
 ```
 
-    ## Rows: 55,371
+    ## Rows: 55,375
     ## Columns: 43
 
     ## Warning: One or more parsing issues, see `problems()` for details

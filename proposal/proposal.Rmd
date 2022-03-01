@@ -1,6 +1,6 @@
 ---
 title: "Project proposal"
-author: "Ace"
+author: "Team ACE"
 output: github_document
 ---
 
@@ -11,6 +11,7 @@ library(broom)
 
 ## 1. Introduction
 Our research question is "How does increasing global temperatures measured by city predict the number of natural disasters in the same area?" Our data for global temperatures by city was found using kaggle's climate change database. Our data ranges from 1750 to 2015, and has 32 columns representing variables with information regarding min, max, and average land temperature. 
+<<<<<<< HEAD
 
 Our sub topics include:
 
@@ -18,6 +19,8 @@ Our sub topics include:
 2. Global temp and droughts
 3. Global temp and flooding
 4. Global temp and hurricanes
+
+
 
 
 ```{r load-data-US disaster declarations, message=FALSE}
@@ -34,8 +37,9 @@ glimpse(disaster_data)
 ```{r load-data-wildfires, message=FALSE}
 wildfires <- readr::read_csv(file = "../data/FW_Veg_Rem_Combined.csv")
 glimpse(wildfires)
-
 ```
+
+
 
 
 

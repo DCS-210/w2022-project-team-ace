@@ -39,10 +39,50 @@ glimpse(wildfires)
 
 
 ## 2. Data
+Some of our data sources include:
+1. Csv file from kaggle with global temp by city 
+2. Csv file from kaggle with wildfire info
+3. CSV file from kaggle on US disaster declarations (includes info on floods and hurricanes)
 
 
 
 ## 3. Data analysis plan
+The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area.
 
+
+STATISTICAL METHODS
+
+Some statistical methods we should use in our project are linear regressions to determine how correlated the two datasets are and some statistical significance tests to see if our conclusions are reliable. 
+
+
+RESULTS NEEDED
+
+For our question to be answered, we would need a significantly correlated dataset that would either show a positive association or negative association between global temperature and wildfire probability. 
+
+## Example of relevant graphs
+```{r histogram-of-wildfires}
+wf_hist <- ggplot(data = wildfires,
+                  mapping = aes(x = disc_pre_year)) + 
+              geom_histogram(binwidth = 1) + 
+              labs(title = "Histogram of wildfires",
+                   subtitle = "From 1991 to 2015",
+                   x = "Year",
+                   y = "Count")
+wf_hist
+
+#san_fran_temp <- global_temps %>%
+  #filter(Country == "United States") %>%
+  #filter(City == "San Francisco") %>%
+    #ggplot(mapping = aes(x = dt, 
+                        # y = AverageTemperature)) + 
+    #geom_smooth() + 
+   # labs(title = "Temperature in San Fransisco, Ca",
+        # subtitle = "Over the past sesquintennial",
+         #x = "Year",
+         #y = "Average Temperature")
+    
+#san_fran_temp
+
+```
 
 

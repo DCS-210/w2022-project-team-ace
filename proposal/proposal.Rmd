@@ -4,6 +4,7 @@ author: "Team ACE"
 output: github_document
 ---
 
+
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
@@ -12,12 +13,16 @@ library(broom)
 ## 1. Introduction
 Our research question is "How does increasing global temperatures measured by city predict the number of natural disasters in the same area?" Our data for global temperatures by city was found using kaggle's climate change database. Our data ranges from 1750 to 2015, and has 32 columns representing variables with information regarding min, max, and average land temperature. 
 
+
 Our sub topics include:
 
 1. Global temp and wildfires
 2. Global temp and droughts
 3. Global temp and flooding
 4. Global temp and hurricanes
+
+
+
 
 
 ```{r load-data-US disaster declarations, message=FALSE}
@@ -34,7 +39,6 @@ glimpse(disaster_data)
 ```{r load-data-wildfires, message=FALSE}
 wildfires <- readr::read_csv(file = "../data/FW_Veg_Rem_Combined.csv")
 glimpse(wildfires)
-
 ```
 
 
@@ -46,8 +50,14 @@ Some of our data sources include:
 
 
 
+
 ## 3. Data analysis plan
 The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area.
+
+The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area. 
+```{r}
+
+```
 
 
 STATISTICAL METHODS

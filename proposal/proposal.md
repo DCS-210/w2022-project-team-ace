@@ -64,9 +64,12 @@ wildfires <- readr::read_csv(file = "../data/FW_Veg_Rem_Combined.csv")
 glimpse(wildfires)
 ```
 
-    ## Rows: 55,263
+    ## Rows: 55,375
     ## Columns: 43
-    ## $ ...1             <dbl> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…
+
+    ## Warning: One or more parsing issues, see `problems()` for details
+
+    ## $ ...1             <chr> "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10…
     ## $ `Unnamed: 0`     <dbl> 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,…
     ## $ fire_name        <chr> NA, NA, NA, "WNA  1", NA, NA, NA, NA, NA, "CRAZY", NA…
     ## $ fire_size        <dbl> 10.0, 3.0, 60.0, 1.0, 2.0, 1.0, 5.2, 1.0, 1.0, 1.0, 8…
@@ -123,6 +126,10 @@ The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
 within a specific area.
 
+The first analysis we will do is to visualize how global temperatures
+can be used as a predictor for the number of wildfires in a given year
+within a specific area.
+
 STATISTICAL METHODS
 
 Some statistical methods we should use in our project are linear
@@ -148,6 +155,8 @@ wf_hist <- ggplot(data = wildfires,
                    y = "Count")
 wf_hist
 ```
+
+    ## Warning: Removed 8 rows containing non-finite values (stat_bin).
 
 ![](proposal_files/figure-gfm/histogram-of-wildfires-1.png)<!-- -->
 

@@ -28,6 +28,15 @@ File name: FW_Veg_Rem_Combined.csv
 
 ## Sea Level Data
 File name: sealevel.csv
+[Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
 
-- `Global Sea Level`: GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm).
-- `Time (in Years)`: Monthly averages of wildfire occurrences through the period of several years.
+- `Year` - Year of datum
+- `TotalWeightedObservations` - Number of observations taken
+- `GMSL_noGIA` - GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm) with respect to 20-year TOPEX/Jason collinear 
+- `StdDevGMSL_noGIA` - Standard Deviation of GMSL (GIA not applied) variation estimate (mm) Adjustment (GIA)
+- `SmoothedGMSL_noGIA` - Smoothed (60-day Gaussian type filter) GMSL (GIA not applied) variation (mm)
+- `GMSL_GIA` - GMSL (Global Isostatic Adjustment (GIA) applied) variation (mm) with respect to 20-year TOPEX/Jason collinear 
+- `StdDevGMSL_GIA` - Standard deviation of GMSL (GIA applied) variation estimate (mm)
+- `SmoothedGMSL_GIA` - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm)
+- `SmoothedGMSL_GIA_sigmaremoved` - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm); annual and semi-annual signal 
+

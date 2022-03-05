@@ -10,7 +10,7 @@ File name: US_temps.csv
 
 [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 
-Due to a maximum file size on GitHub of 100mb, the original file for global land temperatures was filtered locally for US location only by `filter(Country == "United States")`.
+Due to a maximum file size on GitHub of 100m, the original file for global land temperatures was filtered locally for US location only by `filter(Country == "United States")`.
 
 - `dt` - date of observation
 - `AverageTemperature` - global average land temperature in celsius
@@ -21,19 +21,63 @@ Due to a maximum file size on GitHub of 100mb, the original file for global land
 - `Longitude` - Longitude of observation
 
 ## US Disaster Data
+NOTE: only included relevant variables names
 File name: us_disaster_declarations.csv
 
-[Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
+[source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
 
-- `Incident type`: The natural disaster event that occurred.
-- `Time (in Years)`: Monthly averages of disaster occurrences through the period of several years.
+- `fema_declaration_string`: gives fema code for the disaster
+- `disaster_number`: gives the number of the disaster in the order that it occurred in the state.
+- `state`: gives the state that the disaster took place in
+- `declaration type`: gives the type of declaration that the disaster is associated with
+- `declaration date`: gives the date the declaration was made
+- `fy_declared`: 
+- `incident_type`: records general type of disaster
+- `declaration_title`: records type of disaster 
+- `ih_program_declared`: records if any ih program was declared
+- `ia_program_declared`: records if any ia program was declared
+- `pa_program_declared`: records if any pa program was declared
+- `hm_program_declared`:records if any hm program was declared
+- `incident_begin_date`: records when the incident the date began
+- `incident_end_date`: records when the incident ended
+- `disaster_closeout_date`: records when the disaster was officially ended
+- `designated_area`: Area of impact by disaster
 
 
 ## Wildfire Data
 File name: FW_Veg_Rem_Combined.csv
 
-- `Wildfire Count`: Number of reported wildfires.
-- `Time (in Years)`: Monthly averages of wildfire occurrences through the period of several years.
+[Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
+
+- `Wildfire Count` - Number of reported wildfires.
+- `Time (in Years)` - Monthly averages of wildfire occurrences through the period of several years.
+- `fire_name` - Name of Fire
+- `fire_size` - Size of Fire 
+- `fire_size_class` - Class of Fire Size (A-G)
+- `stat_cause_descr` - Cause of Fire
+- `latitude` - Latitude of Fire
+- `longitude` - Longitude of Fire
+- `state` - State of Fire
+- `discovery_month` - Month in which Fire was discovered
+- `putout_time` - time it took to putout the fire
+- `disc_pre_year` - year in which the fire was discovered
+- `Vegetation` - Dominant vegetation in the areas 
+- `fire_magfire_mag` - magnitude of fire intensity (scaled version of fire_size)
+- `Temp_pre_30` - temperature in deg C at the location of fire up to 30 days prior
+- `Temp_pre_15` - temperature in deg C at the location of fire up to 15 days prior
+- `Temp_pre_7` - temperature in deg C at the location of fire up to 7 days prior
+- `Temp_cont` - temperature in deg C at the location of fire up to day the fire was contained
+- `Wind_pre_30` - wind in m/s at the location of fire up to 30 days prior
+- `Wind_pre_15` - wind in m/s at the location of fire up to 15 days prior
+- `Wind_pre_7` - wind in m/s at the location of fire up to 7 days prior
+- `Wind_cont` - wind in m/s at the location of fire up to day the fire was contained
+- `Hum_pre_30` - humidity in % at the location of fire up to 30 days prior
+- `Hum_pre_15` - humidity in % at the location of fire up to 15 days prior
+- `Hum_pre_7` - humidity in % at the location of fire up to 7 days prior
+- `Hum_cont` - humidity in % at the location of fire up to day the fire was contained
+- `Prec_pre_30` - precipitation in mm at the location of fire up to 30 days prior
+- `Prec_pre_15` - precipitation in mm at the location of fire up to 15 days prior
+- `Prec_pre_7` - precipitation in mm at the location of fire up to 7 days prior
 
 
 ## Sea Level Data
@@ -58,7 +102,16 @@ File name: sealevel.csv
 ## US city population density Data
 File name: uscitypopdensity.csv
 
-[Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
+<<<<<<< HEAD
+- `City`: Describes City of said population density
+- `State`: Describes the state the city is in. 
+- `Population Density`: Info on the population density of each city 
+- `2016 Population`: total population of the city in 2016
+- `Land Area`: describes the total size of the city in square miles. 
+
+=======
+[source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
+
 
 - `Index` - Index of observation
 - `City` - Describes City of said population density
@@ -66,4 +119,6 @@ File name: uscitypopdensity.csv
 - `Population Density` - Info on the population density of each city 
 - `2016 Population` - total population of the city in 2016
 - `Land Area` - describes the total size of the city in square miles. 
+>>>>>>> 332ca4fa5ece7818801d266151baffc4fff8809a
+
 

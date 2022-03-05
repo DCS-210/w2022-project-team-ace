@@ -8,9 +8,17 @@ Data can also be found in this folder.
 ## US Temperature Data
 File name: US_temps.csv
 
-- `Average temperature`: The average temperatures in cities (or areas of       interest) in the US.
-- `Time (in Months or Years)`: Monthly averages of temperature through the period of a year or several years.
+[Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 
+Due to a maximum file size on GitHub of 100m, the original file for global land temperatures was filtered locally for US location only by `filter(Country == "United States")`.
+
+- `dt` - date of observation
+- `AverageTemperature` - global average land temperature in celsius
+- `AverageTemperatureUncertainty` - the 95% confidence interval around the average
+- `City` - City of observation
+- `Country` - Country of observation
+- `Latitude` - Latitude of observation
+- `Longitude` - Longitude of observation
 
 ## US Disaster Data
 File name: us_disaster_declarations.csv
@@ -36,25 +44,37 @@ File name: FW_Veg_Rem_Combined.csv
 - `disc_pre_year`: year in which the fire was discovered
 - `Vegetation`:Dominant vegetation in the areas 
 - `fire_magfire_mag`: magnitude of fire intensity (scaled version of fire_size)
-- `Temp_pre_30`:temperature in deg C at the location of fire upto 30 days prior
-- `Temp_pre_15`: temperature in deg C at the location of fire upto 15 days prior
-- `Temp_pre_7`: temperature in deg C at the location of fire upto 7 days prior
-- `Temp_cont`: temperature in deg C at the location of fire upto day the fire was contained
-- `Wind_pre_30`: wind in m/s at the location of fire upto 30 days prior
-- `Wind_pre_15`: wind in m/s at the location of fire upto 15 days prior
-- `Wind_pre_7`: wind in m/s at the location of fire upto 7 days prior
-- `Wind_cont`: wind in m/s at the location of fire upto day the fire was contained
-- `Hum_pre_30`: humidity in % at the location of fire upto 30 days prior
-- `Hum_pre_15`: humidity in % at the location of fire upto 15 days prior
-- `Hum_pre_7`: humidity in % at the location of fire upto 7 days prior
-- `Hum_cont`: humidity in % at the location of fire upto day the fire was contained
-- `Prec_pre_30`: precipitation in mm at the location of fire upto 30 days prior
-- `Prec_pre_15`: precipitation in mm at the location of fire upto 15 days prior
-- `Prec_pre_7`: precipitation in mm at the location of fire upto 7 days prior
+- `Temp_pre_30`:temperature in deg C at the location of fire up to 30 days prior
+- `Temp_pre_15`: temperature in deg C at the location of fire up to 15 days prior
+- `Temp_pre_7`: temperature in deg C at the location of fire up to 7 days prior
+- `Temp_cont`: temperature in deg C at the location of fire up to day the fire was contained
+- `Wind_pre_30`: wind in m/s at the location of fire up to 30 days prior
+- `Wind_pre_15`: wind in m/s at the location of fire up to 15 days prior
+- `Wind_pre_7`: wind in m/s at the location of fire up to 7 days prior
+- `Wind_cont`: wind in m/s at the location of fire up to day the fire was contained
+- `Hum_pre_30`: humidity in % at the location of fire up to 30 days prior
+- `Hum_pre_15`: humidity in % at the location of fire up to 15 days prior
+- `Hum_pre_7`: humidity in % at the location of fire up to 7 days prior
+- `Hum_cont`: humidity in % at the location of fire up to day the fire was contained
+- `Prec_pre_30`: precipitation in mm at the location of fire up to 30 days prior
+- `Prec_pre_15`: precipitation in mm at the location of fire up to 15 days prior
+- `Prec_pre_7`: precipitation in mm at the location of fire up to 7 days prior
 
 
 ## Sea Level Data
 File name: sealevel.csv
+
+[Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
+
+- `Year` - Year of datum
+- `TotalWeightedObservations` - Number of observations taken
+- `GMSL_noGIA` - GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm) with respect to 20-year TOPEX/Jason collinear 
+- `StdDevGMSL_noGIA` - Standard Deviation of GMSL (GIA not applied) variation estimate (mm) Adjustment (GIA)
+- `SmoothedGMSL_noGIA` - Smoothed (60-day Gaussian type filter) GMSL (GIA not applied) variation (mm)
+- `GMSL_GIA` - GMSL (Global Isostatic Adjustment (GIA) applied) variation (mm) with respect to 20-year TOPEX/Jason collinear 
+- `StdDevGMSL_GIA` - Standard deviation of GMSL (GIA applied) variation estimate (mm)
+- `SmoothedGMSL_GIA` - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm)
+- `SmoothedGMSL_GIA_sigmaremoved` - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm); annual and semi-annual signal 
 
 - `Global Sea Level`: GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm).
 - `Time (in Years)`: Monthly averages of wildfire occurrences through the period of several years.
@@ -68,3 +88,5 @@ File name: uscitypopdensity.csv
 - `Population Density`: Info on the population density of each city 
 - `2016 Population`: total population of the city in 2016
 - `Land Area`: describes the total size of the city in square miles. 
+
+

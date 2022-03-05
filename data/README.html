@@ -174,9 +174,16 @@ pre code {
 <div id="us-temperature-data" class="section level2">
 <h2>US Temperature Data</h2>
 <p>File name: US_temps.csv</p>
+<p><a href="https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data">Source</a></p>
+<p>Due to a maximum file size on GitHub of 100m, the original file for global land temperatures was filtered locally for US location only by <code>filter(Country == &quot;United States&quot;)</code>.</p>
 <ul>
-<li><code>Average temperature</code>: The average temperatures in cities (or areas of interest) in the US.</li>
-<li><code>Time (in Months or Years)</code>: Monthly averages of temperature through the period of a year or several years.</li>
+<li><code>dt</code> - date of observation</li>
+<li><code>AverageTemperature</code> - global average land temperature in celsius</li>
+<li><code>AverageTemperatureUncertainty</code> - the 95% confidence interval around the average</li>
+<li><code>City</code> - City of observation</li>
+<li><code>Country</code> - Country of observation</li>
+<li><code>Latitude</code> - Latitude of observation</li>
+<li><code>Longitude</code> - Longitude of observation</li>
 </ul>
 </div>
 <div id="us-disaster-data" class="section level2">
@@ -205,29 +212,39 @@ pre code {
 <li><code>disc_pre_year</code>: year in which the fire was discovered</li>
 <li><code>Vegetation</code>:Dominant vegetation in the areas</li>
 <li><code>fire_magfire_mag</code>: magnitude of fire intensity (scaled version of fire_size)</li>
-<li><code>Temp_pre_30</code>:temperature in deg C at the location of fire upto 30 days prior</li>
-<li><code>Temp_pre_15</code>: temperature in deg C at the location of fire upto 15 days prior</li>
-<li><code>Temp_pre_7</code>: temperature in deg C at the location of fire upto 7 days prior</li>
-<li><code>Temp_cont</code>: temperature in deg C at the location of fire upto day the fire was contained</li>
-<li><code>Wind_pre_30</code>: wind in m/s at the location of fire upto 30 days prior</li>
-<li><code>Wind_pre_15</code>: wind in m/s at the location of fire upto 15 days prior</li>
-<li><code>Wind_pre_7</code>: wind in m/s at the location of fire upto 7 days prior</li>
-<li><code>Wind_cont</code>: wind in m/s at the location of fire upto day the fire was contained</li>
-<li><code>Hum_pre_30</code>: humidity in % at the location of fire upto 30 days prior</li>
-<li><code>Hum_pre_15</code>: humidity in % at the location of fire upto 15 days prior</li>
-<li><code>Hum_pre_7</code>: humidity in % at the location of fire upto 7 days prior</li>
-<li><code>Hum_cont</code>: humidity in % at the location of fire upto day the fire was contained</li>
-<li><code>Prec_pre_30</code>: precipitation in mm at the location of fire upto 30 days prior</li>
-<li><code>Prec_pre_15</code>: precipitation in mm at the location of fire upto 15 days prior</li>
-<li><code>Prec_pre_7</code>: precipitation in mm at the location of fire upto 7 days prior</li>
+<li><code>Temp_pre_30</code>:temperature in deg C at the location of fire up to 30 days prior</li>
+<li><code>Temp_pre_15</code>: temperature in deg C at the location of fire up to 15 days prior</li>
+<li><code>Temp_pre_7</code>: temperature in deg C at the location of fire up to 7 days prior</li>
+<li><code>Temp_cont</code>: temperature in deg C at the location of fire up to day the fire was contained</li>
+<li><code>Wind_pre_30</code>: wind in m/s at the location of fire up to 30 days prior</li>
+<li><code>Wind_pre_15</code>: wind in m/s at the location of fire up to 15 days prior</li>
+<li><code>Wind_pre_7</code>: wind in m/s at the location of fire up to 7 days prior</li>
+<li><code>Wind_cont</code>: wind in m/s at the location of fire up to day the fire was contained</li>
+<li><code>Hum_pre_30</code>: humidity in % at the location of fire up to 30 days prior</li>
+<li><code>Hum_pre_15</code>: humidity in % at the location of fire up to 15 days prior</li>
+<li><code>Hum_pre_7</code>: humidity in % at the location of fire up to 7 days prior</li>
+<li><code>Hum_cont</code>: humidity in % at the location of fire up to day the fire was contained</li>
+<li><code>Prec_pre_30</code>: precipitation in mm at the location of fire up to 30 days prior</li>
+<li><code>Prec_pre_15</code>: precipitation in mm at the location of fire up to 15 days prior</li>
+<li><code>Prec_pre_7</code>: precipitation in mm at the location of fire up to 7 days prior</li>
 </ul>
 </div>
 <div id="sea-level-data" class="section level2">
 <h2>Sea Level Data</h2>
 <p>File name: sealevel.csv</p>
+<p><a href="https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021">Source</a></p>
 <ul>
-<li><code>Global Sea Level</code>: GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm).</li>
-<li><code>Time (in Years)</code>: Monthly averages of wildfire occurrences through the period of several years.</li>
+<li><p><code>Year</code> - Year of datum</p></li>
+<li><p><code>TotalWeightedObservations</code> - Number of observations taken</p></li>
+<li><p><code>GMSL_noGIA</code> - GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm) with respect to 20-year TOPEX/Jason collinear</p></li>
+<li><p><code>StdDevGMSL_noGIA</code> - Standard Deviation of GMSL (GIA not applied) variation estimate (mm) Adjustment (GIA)</p></li>
+<li><p><code>SmoothedGMSL_noGIA</code> - Smoothed (60-day Gaussian type filter) GMSL (GIA not applied) variation (mm)</p></li>
+<li><p><code>GMSL_GIA</code> - GMSL (Global Isostatic Adjustment (GIA) applied) variation (mm) with respect to 20-year TOPEX/Jason collinear</p></li>
+<li><p><code>StdDevGMSL_GIA</code> - Standard deviation of GMSL (GIA applied) variation estimate (mm)</p></li>
+<li><p><code>SmoothedGMSL_GIA</code> - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm)</p></li>
+<li><p><code>SmoothedGMSL_GIA_sigmaremoved</code> - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm); annual and semi-annual signal</p></li>
+<li><p><code>Global Sea Level</code>: GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm).</p></li>
+<li><p><code>Time (in Years)</code>: Monthly averages of wildfire occurrences through the period of several years.</p></li>
 </ul>
 </div>
 <div id="us-city-population-density-data" class="section level2">

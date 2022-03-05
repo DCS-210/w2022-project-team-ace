@@ -24,7 +24,7 @@ Due to a maximum file size on GitHub of 100m, the original file for global land 
 NOTE: only included relevant variables names
 File name: us_disaster_declarations.csv
 
-[source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
+[Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
 
 - `fema_declaration_string`: gives fema code for the disaster
 - `disaster_number`: gives the number of the disaster in the order that it occurred in the state.
@@ -102,7 +102,7 @@ File name: sealevel.csv
 ## US city population density Data
 File name: uscitypopdensity.csv
 
-[source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
+[Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
 
 
 - `Index` - Index of observation

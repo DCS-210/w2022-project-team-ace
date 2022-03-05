@@ -55,11 +55,13 @@ glimpse(US_pop)
 
 
 ## 2. Data
-Some of our data sources include:
-1. Csv file from kaggle with global temp by city 
-2. Csv file from kaggle with wildfire info
-3. CSV file from kaggle on US disaster declarations (includes info on floods and hurricanes)
-and some more... add later
+
+1. US Temperature - [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
+2. US Disasters - [Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
+3. US Wildfires - [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
+4. Sea Level - [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
+5. US City Population - [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
+
 
 
 
@@ -138,6 +140,18 @@ wildfires %>%
          x = "Year of wildfire",
          y = "Wildfire size (acres)")
   
+```
+
+```{r}
+ggplot(data = sea_lvl,
+       mapping = aes(x = Year, 
+                     y = GMSL_noGIA)) + 
+  geom_point() + 
+  geom_smooth() +
+  labs(title = "Global mean sea level rise",
+       subtitle = "Relative to 2006",
+       x = "Year",
+       y = "Global Mean Sea Level (mm)")
 ```
 
 

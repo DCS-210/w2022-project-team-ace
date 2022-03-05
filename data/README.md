@@ -40,3 +40,20 @@ File name: sealevel.csv
 - `SmoothedGMSL_GIA` - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm)
 - `SmoothedGMSL_GIA_sigmaremoved` - Smoothed (60-day Gaussian type filter) GMSL (GIA applied) variation (mm); annual and semi-annual signal 
 
+- `Global Sea Level`: GMSL (Global Isostatic Adjustment (GIA) not applied) variation (mm).
+- `Time (in Years)`: Monthly averages of wildfire occurrences through the period of several years.
+
+
+## US city population density Data
+File name: uscitypopdensity.csv
+- `City`
+Describes City of said population density
+- `State`
+Describes the state the city is in. 
+- `Population Density`
+Info on the population density of each city 
+- `2016 Population`
+total population of the city in 2016
+- `Land Area`
+describes the total size of the city in square miles. 
+

@@ -173,10 +173,10 @@ can be used as a predictor for the number of wildfires in a given year
 within a specific area.
 
 ``` r
-US_temp_pop <- left_join(x = US_temp,
-                         y = US_pop,
-                         by = "City") #%>%
-                #filter(population > 200000)
+#US_temp_pop <- left_join(x = US_temp,
+#                         y = US_pop,
+#                         by = "City") #%>%
+#                #filter(population > 200000)
 ```
 
 ### STATISTICAL METHODS

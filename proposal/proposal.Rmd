@@ -24,7 +24,7 @@ Our sub topics include:
 
 
 
-
+## Load Data
 ```{r load-data-US disaster declarations, message=FALSE}
 disaster_data <- readr::read_csv(file = "../data/us_disaster_declarations.csv")
 glimpse(disaster_data)
@@ -40,6 +40,16 @@ US_temp <- readr::read_csv(file = "../data/US_temps.csv")
 glimpse(US_temp)
 ```
 
+```{r load-data-sea_lvl, message=FALSE}
+sea_lvl <- readr::read_csv(file = "../data/sealevel.csv")
+glimpse(sea_lvl)
+```
+
+```{r load-data-US_pop, message=FALSE}
+US_pop <- readr::read_csv(file = "../data/uscitypopdensity.csv")
+glimpse(US_pop)
+```
+
 
 
 ## 2. Data
@@ -47,6 +57,8 @@ Some of our data sources include:
 1. Csv file from kaggle with global temp by city 
 2. Csv file from kaggle with wildfire info
 3. CSV file from kaggle on US disaster declarations (includes info on floods and hurricanes)
+and some more... add later
+
 
 
 
@@ -55,7 +67,13 @@ Some of our data sources include:
 The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area.
 
 The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area. 
-```{r}
+
+
+```{r merge-us_temp+pop}
+US_temp_pop <- left_join(x = US_temp,
+                         y = US_pop,
+                         by = "City") #%>%
+                #filter(population > 200000)
 
 ```
 

@@ -55,6 +55,10 @@ File name: sealevel.csv
 
 ## US city population density Data
 File name: uscitypopdensity.csv
+
+[Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
+
+- `Index` - Index of observation
 - `City` - Describes City of said population density
 - `State` - Describes the state the city is in. 
 - `Population Density` - Info on the population density of each city 

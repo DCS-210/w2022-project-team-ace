@@ -66,9 +66,7 @@ and some more... add later
 
 
 ## 3. Data analysis plan
-The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area.
-
-The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area. 
+The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area. Continuing off this theme, we will also analyze how global sea levels rise with rising global temperature as well. To give emphasis on why this is a problem, we will also include population data to see how much impact sea level rise and natural disasters have on a city. 
 
 
 ```{r merge-us_temp+pop}

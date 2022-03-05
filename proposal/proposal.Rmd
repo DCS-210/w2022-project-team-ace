@@ -71,7 +71,7 @@ The first analysis we will do is to visualize how global temperatures can be use
 The first analysis we will do is to visualize how global temperatures can be used as a predictor for the number of wildfires in a given year within a specific area. 
 
 
-```{r merge-us_temp+pop}
+```{r merge-us_temp+pop, echo=FALSE}
 #US_temp_pop <- left_join(x = US_temp,
 #                         y = US_pop,
 #                         by = "City") #%>%

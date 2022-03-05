@@ -172,13 +172,6 @@ The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
 within a specific area.
 
-``` r
-#US_temp_pop <- left_join(x = US_temp,
-#                         y = US_pop,
-#                         by = "City") #%>%
-#                #filter(population > 200000)
-```
-
 ### STATISTICAL METHODS
 
 Some statistical methods we should use in our project are linear
@@ -192,7 +185,7 @@ correlated dataset that would either show a positive association or
 negative association between global temperature and wildfire
 probability.
 
-## Example of relevant graphs
+## Examples of relevant graphs
 
 ``` r
 ggplot(data = wildfires,

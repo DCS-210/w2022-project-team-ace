@@ -23,6 +23,8 @@ Due to a maximum file size on GitHub of 100mb, the original file for global land
 ## US Disaster Data
 File name: us_disaster_declarations.csv
 
+[Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
+
 - `Incident type`: The natural disaster event that occurred.
 - `Time (in Years)`: Monthly averages of disaster occurrences through the period of several years.
 

@@ -102,14 +102,6 @@ File name: sealevel.csv
 ## US city population density Data
 File name: uscitypopdensity.csv
 
-<<<<<<< HEAD
-- `City`: Describes City of said population density
-- `State`: Describes the state the city is in. 
-- `Population Density`: Info on the population density of each city 
-- `2016 Population`: total population of the city in 2016
-- `Land Area`: describes the total size of the city in square miles. 
-
-=======
 [source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
 
 
@@ -119,6 +111,6 @@ File name: uscitypopdensity.csv
 - `Population Density` - Info on the population density of each city 
 - `2016 Population` - total population of the city in 2016
 - `Land Area` - describes the total size of the city in square miles. 
->>>>>>> 332ca4fa5ece7818801d266151baffc4fff8809a
+
 
 

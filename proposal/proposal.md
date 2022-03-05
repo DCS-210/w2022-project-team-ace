@@ -229,9 +229,32 @@ disaster_data %>%
   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
 "Volcano")) %>%
   ggplot(mapping = aes(x = fy_declared)) +
-    geom_histogram(binwidth = 30) + 
+    geom_histogram(binwidth = 10) + 
     facet_wrap( ~ incident_type) +
-    theme(axis.text.x = element_text(angle = 45))
+    theme(axis.text.x = element_text(angle = 45)) + 
+    labs(title = "Histogram of major disasters",
+         subtitle = "By disaster type",
+         x = "Year",
+         y = "Count")
 ```
 
 ![](proposal_files/figure-gfm/disaster-hist-1.png)<!-- -->
+
+``` r
+wildfires %>%
+  filter(fire_size_class == c("D", "E", "F", "G")) %>%
+  ggplot(mapping = aes(x = disc_pre_year, 
+                       y = fire_size)) + 
+    geom_smooth() + 
+    labs(title = "Large wildfires by year",
+         subtitle = "Wildfires of class D, E, F, and G, size of 100 acres or more",
+         x = "Year of wildfire",
+         y = "Wildfire size (acres)")
+```
+
+    ## Warning in fire_size_class == c("D", "E", "F", "G"): longer object length is not
+    ## a multiple of shorter object length
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+![](proposal_files/figure-gfm/large-wildfires-1.png)<!-- -->

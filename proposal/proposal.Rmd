@@ -89,7 +89,7 @@ Some statistical methods we should use in our project are linear regressions to 
 
 For our question to be answered, we would need a significantly correlated dataset that would either show a positive association or negative association between global temperature and wildfire probability. 
 
-## Example of relevant graphs
+## Examples of relevant graphs
 ```{r histogram-of-wildfires}
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
@@ -118,11 +118,27 @@ disaster_data %>%
   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
 "Volcano")) %>%
   ggplot(mapping = aes(x = fy_declared)) +
-    geom_histogram(binwidth = 30) + 
+    geom_histogram(binwidth = 10) + 
     facet_wrap( ~ incident_type) +
-    theme(axis.text.x = element_text(angle = 45))
+    theme(axis.text.x = element_text(angle = 45)) + 
+    labs(title = "Histogram of major disasters",
+         subtitle = "By disaster type",
+         x = "Year",
+         y = "Count")
 ```
 
+```{r large-wildfires}
+wildfires %>%
+  filter(fire_size_class == c("D", "E", "F", "G")) %>%
+  ggplot(mapping = aes(x = disc_pre_year, 
+                       y = fire_size)) + 
+    geom_smooth() + 
+    labs(title = "Large wildfires by year",
+         subtitle = "Wildfires of class D, E, F, and G, size of 100 acres or more",
+         x = "Year of wildfire",
+         y = "Wildfire size (acres)")
+  
+```
 
 
 

@@ -13,11 +13,27 @@ File name: US_temps.csv
 
 
 ## US Disaster Data
+NOTE: only included relevant variables names
 File name: us_disaster_declarations.csv
 
-- `Incident type`: The natural disaster event that occurred.
-- `Time (in Years)`: Monthly averages of disaster occurrences through the period of several years.
+[source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
 
+- `fema_declaration_string`: gives fema code for the disaster
+- `disaster_number`: gives the number of the disaster in the order that it occurred in the state.
+- `state`: gives the state that the disaster took place in
+- `declaration type`: gives the type of declaration that the disaster is associated with
+- `declaration date`: gives the date the declaration was made
+- `fy_declared`: 
+- `incident_type`: records general type of disaster
+- `declaration_title`: records type of disaster 
+- `ih_program_declared`: records if any ih program was declared
+- `ia_program_declared`: records if any ia program was declared
+- `pa_program_declared`: records if any pa program was declared
+- `hm_program_declared`:records if any hm program was declared
+- `incident_begin_date`: records when the incident the date began
+- `incident_end_date`: records when the incident ended
+- `disaster_closeout_date`: records when the disaster was officially ended
+- `designated_area`: Area of impact by disaster
 
 ## Wildfire Data
 File name: FW_Veg_Rem_Combined.csv
@@ -35,6 +51,8 @@ File name: sealevel.csv
 
 ## US city population density Data
 File name: uscitypopdensity.csv
+
+[source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
 - `City`
 Describes City of said population density
 - `State`
@@ -45,3 +63,7 @@ Info on the population density of each city
 total population of the city in 2016
 - `Land Area`
 describes the total size of the city in square miles. 
+
+Link:
+https://www.kaggle.com/mmcgurr/us-city-population-densities
+

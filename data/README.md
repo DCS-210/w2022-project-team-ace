@@ -24,7 +24,7 @@ Due to a maximum file size on GitHub of 100mb, the original file for global land
 NOTE: only included relevant variables names
 File name: us_disaster_declarations.csv
 
-[source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
+[source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72) 
 
 - `fema_declaration_string`: gives fema code for the disaster
 - `disaster_number`: gives the number of the disaster in the order that it occurred in the state.

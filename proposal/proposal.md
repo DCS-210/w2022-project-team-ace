@@ -23,6 +23,8 @@ Our sub topics include:
 3.  Global temp and flooding
 4.  Global temp and hurricanes
 
+## Load Data
+
 ``` r
 disaster_data <- readr::read_csv(file = "../data/us_disaster_declarations.csv")
 glimpse(disaster_data)
@@ -158,7 +160,7 @@ glimpse(US_pop)
 Some of our data sources include: 1. Csv file from kaggle with global
 temp by city 2. Csv file from kaggle with wildfire info 3. CSV file from
 kaggle on US disaster declarations (includes info on floods and
-hurricanes)
+hurricanes) and some more… add later
 
 ## 3. Data analysis plan
 
@@ -169,6 +171,13 @@ within a specific area.
 The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
 within a specific area.
+
+``` r
+#US_temp_pop <- left_join(x = US_temp,
+#                         y = US_pop,
+#                         by = "City") #%>%
+#                #filter(population > 200000)
+```
 
 ### STATISTICAL METHODS
 

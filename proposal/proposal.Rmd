@@ -1,7 +1,9 @@
 ---
 title: "Project proposal"
 author: "Team ACE"
-output: github_document
+output:
+  github_document: default
+  html_document: default
 ---
 
 
@@ -70,10 +72,10 @@ The first analysis we will do is to visualize how global temperatures can be use
 
 
 ```{r merge-us_temp+pop}
-US_temp_pop <- left_join(x = US_temp,
-                         y = US_pop,
-                         by = "City") #%>%
-                #filter(population > 200000)
+#US_temp_pop <- left_join(x = US_temp,
+#                         y = US_pop,
+#                         by = "City") #%>%
+#                #filter(population > 200000)
 
 ```
 

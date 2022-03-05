@@ -49,10 +49,10 @@ File name: FW_Veg_Rem_Combined.csv
 
 [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
 
-- `Wildfire Count` - Number of reported wildfires.
-- `Time (in Years)` - Monthly averages of wildfire occurrences through the period of several years.
+- `unnamed column 1` - number
+- `unnamed column 2` - number
 - `fire_name` - Name of Fire
-- `fire_size` - Size of Fire 
+- `fire_size` - Size of Fire (acres)
 - `fire_size_class` - Class of Fire Size (A-G)
 - `stat_cause_descr` - Cause of Fire
 - `latitude` - Latitude of Fire

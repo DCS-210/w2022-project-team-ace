@@ -50,7 +50,10 @@ glimpse(sea_lvl)
 ```{r load-data-US_pop, message=FALSE}
 US_pop <- readr::read_csv(file = "../data/uscitypopdensity.csv")
 glimpse(US_pop)
+US_pop$Population_2016 <- US_pop$"2016 Population" # create a new column/variable
+US_pop$"2016 Population" <- NULL # remove the column
 ```
+
 
 
 
@@ -74,11 +77,9 @@ The first analysis we will do is to visualize how global temperatures can be use
 
 
 ```{r merge-us_temp+pop, echo=FALSE}
-#US_temp_pop <- left_join(x = US_temp,
-#                         y = US_pop,
-#                         by = "City") #%>%
-#                #filter(population > 200000)
-
+US_temp_pop <- left_join(x = US_temp,
+                         y = US_pop,
+                         by = "City")
 ```
 
 
@@ -154,6 +155,20 @@ ggplot(data = sea_lvl,
        y = "Global Mean Sea Level (mm)")
 ```
 
+```{r temp-large-cities}
+US_temp_pop %>% 
+  filter(Population_2016 >= 1000000) %>% # cities with over 1 million population
+  select(dt, AverageTemperature, City, State, Population_2016) %>%
+  ggplot(mapping = aes(x = dt, 
+                       y = AverageTemperature)) + 
+    geom_smooth() + 
+    labs(title = "Temperature in Large Cities in the US",
+         subtitle = "Over the past sesquintennial, filtered for cities with pop > 1000000",
+         x = "Year",
+         y = "Average Temperature") + 
+    facet_wrap( ~ City)
+
+```
 
 
 

@@ -5,6 +5,12 @@ Team ACE
 ``` r
 library(tidyverse)
 library(broom)
+library(leaflet) ## For leaflet interactive maps
+library(sf) ## For spatial data
+library(RColorBrewer) ## For colour palettes
+library(htmltools) ## For html
+library(leafsync) ## For placing plots side by side
+library(kableExtra) ## Table output
 ```
 
 ## 1. Introduction
@@ -155,6 +161,11 @@ glimpse(US_pop)
     ## $ `2016 Population`                          <dbl> 8537673, 3976322, 2704958, …
     ## $ `Land Area (Square Miles)`                 <dbl> 303, 469, 228, 600, 517, 13…
 
+``` r
+US_pop$Population_2016 <- US_pop$"2016 Population" # create a new column/variable
+US_pop$"2016 Population" <- NULL # remove the column
+```
+
 ## 2. Data
 
 1.  US Temperature -
@@ -273,3 +284,37 @@ ggplot(data = sea_lvl,
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
 ![](proposal_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+``` r
+US_temp_pop %>% 
+  filter(Population_2016 >= 1000000) %>% # cities with over 1 million population
+  select(dt, AverageTemperature, City, State, Population_2016) %>%
+  ggplot(mapping = aes(x = dt, 
+                       y = AverageTemperature)) + 
+    geom_smooth() + 
+    labs(title = "Temperature in Large Cities in the US",
+         subtitle = "Over the past sesquintennial, filtered for cities with pop > 1000000",
+         x = "Year",
+         y = "Average Temperature") + 
+    facet_wrap( ~ City)
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 353 rows containing non-finite values (stat_smooth).
+
+![](proposal_files/figure-gfm/temp-large-cities-1.png)<!-- -->
+
+``` r
+leaflet(data = US_temp_pop) %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) #<<
+```
+
+    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](proposal_files/figure-gfm/leaflet-map-1.png)<!-- -->

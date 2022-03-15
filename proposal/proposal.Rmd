@@ -10,6 +10,12 @@ output:
 ```{r load-packages, message = FALSE}
 library(tidyverse)
 library(broom)
+library(leaflet) ## For leaflet interactive maps
+library(sf) ## For spatial data
+library(RColorBrewer) ## For colour palettes
+library(htmltools) ## For html
+library(leafsync) ## For placing plots side by side
+library(kableExtra) ## Table output
 ```
 
 ## 1. Introduction
@@ -168,6 +174,14 @@ US_temp_pop %>%
          y = "Average Temperature") + 
     facet_wrap( ~ City)
 
+```
+
+```{r leaflet-map}
+leaflet(data = US_temp_pop) %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) #<<
 ```
 
 

@@ -11,6 +11,8 @@ File name: US_temps.csv
 [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 
 Due to a maximum file size on GitHub of 100m, the original file for global land temperatures was filtered locally for US location only by `filter(Country == "United States")`.
+Columns: 7
+Rows: 687289
 
 - `dt` - date of observation
 - `AverageTemperature` - global average land temperature in celsius
@@ -25,6 +27,8 @@ NOTE: only included relevant variables names
 File name: us_disaster_declarations.csv
 
 [Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
+Columns: 22
+Rows: 62547
 
 - `fema_declaration_string`: gives fema code for the disaster
 - `disaster_number`: gives the number of the disaster in the order that it occurred in the state.
@@ -48,6 +52,8 @@ File name: us_disaster_declarations.csv
 File name: FW_Veg_Rem_Combined.csv
 
 [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
+Columns: 43
+Rows: 55375
 
 - `unnamed column 1` - number
 - `unnamed column 2` - number
@@ -84,6 +90,8 @@ File name: FW_Veg_Rem_Combined.csv
 File name: sealevel.csv
 
 [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
+Columns: 9
+Rows: 702
 
 - `Year` - Year of datum
 - `TotalWeightedObservations` - Number of observations taken
@@ -103,7 +111,8 @@ File name: sealevel.csv
 File name: uscitypopdensity.csv
 
 [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
-
+Columns: 6
+Rows: 754
 
 - `Index` - Index of observation
 - `City` - Describes City of said population density

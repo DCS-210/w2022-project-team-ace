@@ -104,7 +104,8 @@ For our question to be answered, we would need a significantly correlated datase
 ```{r histogram-of-wildfires}
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
-  geom_histogram(binwidth = 1) + 
+  #geom_histogram(binwidth = 1) + 
+  geom_density() +
   labs(title = "Histogram of wildfires",
        subtitle = "From 1991 to 2015",
        x = "Year",

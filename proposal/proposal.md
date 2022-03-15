@@ -11,6 +11,8 @@ library(RColorBrewer) ## For colour palettes
 library(htmltools) ## For html
 library(leafsync) ## For placing plots side by side
 library(kableExtra) ## Table output
+library(tidymodels) # modelling
+library(readr)
 ```
 
 ## 1. Introduction
@@ -207,14 +209,15 @@ probability.
 ``` r
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
-  geom_histogram(binwidth = 1) + 
+  #geom_histogram(binwidth = 1) + 
+  geom_density() +
   labs(title = "Histogram of wildfires",
        subtitle = "From 1991 to 2015",
        x = "Year",
        y = "Count")
 ```
 
-    ## Warning: Removed 8 rows containing non-finite values (stat_bin).
+    ## Warning: Removed 8 rows containing non-finite values (stat_density).
 
 ![](proposal_files/figure-gfm/histogram-of-wildfires-1.png)<!-- -->
 

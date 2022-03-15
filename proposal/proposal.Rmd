@@ -16,6 +16,8 @@ library(RColorBrewer) ## For colour palettes
 library(htmltools) ## For html
 library(leafsync) ## For placing plots side by side
 library(kableExtra) ## Table output
+library(tidymodels) # modelling
+library(readr)
 ```
 
 ## 1. Introduction

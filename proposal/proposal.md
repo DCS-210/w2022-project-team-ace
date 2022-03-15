@@ -308,16 +308,30 @@ US_temp_pop %>%
 
 ![](proposal_files/figure-gfm/temp-large-cities-1.png)<!-- -->
 
+Need to do: remove letters from lat and long in `US_temp_pop`.
+
+``` r
+US_temp_pop <- US_temp_pop %>%
+  mutate(Latitude = str_remove_all(Latitude, "[NESW]"),
+         Longitude = str_remove_all(Longitude, "[NESW]"))
+US_temp_pop$Longitude <- as.numeric(US_temp_pop$Longitude)
+US_temp_pop$Latitude <- as.numeric(US_temp_pop$Latitude)
+US_temp_pop <- US_temp_pop %>%
+  mutate(Longitude = Longitude * -1) 
+```
+
+2 leaflet maps: - wildfires colored by size, have grouped circles - map
+showing cities and populations, colored by average increase in
+temperature (would need linear model I think)
+
 ``` r
 leaflet(data = US_temp_pop) %>%
   addTiles() %>%
   setView(lng = -97, 
           lat = 39, 
-          zoom = 4) #<<
+          zoom = 4) %>%
+  addCircleMarkers(lng = Longitude, 
+                   lat = Latitude, 
+                   label = City, 
+                   clusterOptions = markerClusterOptions())
 ```
-
-    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
-    ## TypeError: Attempting to change the setter of an unconfigurable property.
-    ## TypeError: Attempting to change the setter of an unconfigurable property.
-
-![](proposal_files/figure-gfm/leaflet-map-1.png)<!-- -->

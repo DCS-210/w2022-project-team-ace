@@ -4,7 +4,7 @@ Document of data file names and descriptions.
 
 Data can also be found in this folder.
 
-
+ 
 ## US Temperature Data
 File name: US_temps.csv
 
@@ -26,9 +26,13 @@ Rows: 687289
 NOTE: only included relevant variables names
 File name: us_disaster_declarations.csv
 
+<<<<<<< HEAD
+[source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72) 
+=======
 [Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
 Columns: 22
 Rows: 62547
+>>>>>>> 6ab45f6d93388a74038e21ab53fd8473a1b97974
 
 - `fema_declaration_string`: gives fema code for the disaster
 - `disaster_number`: gives the number of the disaster in the order that it occurred in the state.

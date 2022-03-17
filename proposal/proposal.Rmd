@@ -109,7 +109,7 @@ For our question to be answered, we would need a significantly correlated datase
 ## Examples of relevant graphs
 ```{r histogram-of-wildfires}
 wildfires <- wildfires %>%
-  mutate(wf_rad_mi = sqrt(fire_size/pi))
+  mutate(wf_rad_mi = sqrt((fire_size * 4046.86) / pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
   #geom_histogram(binwidth = 1) + 
@@ -149,7 +149,7 @@ disaster_data %>%
 
 ```{r large-wildfires}
 lg_wildfires <- wildfires %>%
-  filter(fire_size_class == c("D", "E", "F", "G"))
+  filter(fire_size_class %in% c("D", "E", "F", "G"))
 lg_wildfires %>%
   ggplot(mapping = aes(x = disc_pre_year, 
                        y = fire_size)) + 
@@ -248,7 +248,7 @@ lg_wildfires %>%
              label = ~lg_wildfires$stat_cause_descr, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
-             stroke = FALSE, fillOpacity = 0.5,
+             stroke = FALSE, fillOpacity = 0.7,
              #clusterOptions = markerClusterOptions()
              )
 

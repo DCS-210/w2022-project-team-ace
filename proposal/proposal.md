@@ -170,6 +170,11 @@ US_pop$"2016 Population" <- NULL # remove the column
 
 ## 2. Data
 
+See README.md for more info. Some of our data sources include: 1. Csv
+file from kaggle with global temp by city 2. Csv file from kaggle with
+wildfire info 3. CSV file from kaggle on US disaster declarations
+(includes info on floods and hurricanes)
+
 1.  US Temperature -
     [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 2.  US Disasters -
@@ -185,11 +190,11 @@ US_pop$"2016 Population" <- NULL # remove the column
 
 The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
-within a specific area.
-
-The first analysis we will do is to visualize how global temperatures
-can be used as a predictor for the number of wildfires in a given year
-within a specific area.
+within a specific area. Continuing off this theme, we will also analyze
+how global sea levels rise with rising global temperature as well. To
+give emphasis on why this is a problem, we will also include population
+data to see how much impact sea level rise and natural disasters have on
+a city.
 
 ### STATISTICAL METHODS
 
@@ -208,7 +213,7 @@ probability.
 
 ``` r
 wildfires <- wildfires %>%
-  mutate(wf_rad_mi = sqrt(fire_size/pi))
+  mutate(wf_rad_mi = sqrt((fire_size * 4046.86) / pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
   #geom_histogram(binwidth = 1) + 
@@ -257,13 +262,7 @@ disaster_data %>%
 
 ``` r
 lg_wildfires <- wildfires %>%
-  filter(fire_size_class == c("D", "E", "F", "G"))
-```
-
-    ## Warning in fire_size_class == c("D", "E", "F", "G"): longer object length is not
-    ## a multiple of shorter object length
-
-``` r
+  filter(fire_size_class %in% c("D", "E", "F", "G"))
 lg_wildfires %>%
   ggplot(mapping = aes(x = disc_pre_year, 
                        y = fire_size)) + 
@@ -275,6 +274,8 @@ lg_wildfires %>%
 ```
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 2 rows containing non-finite values (stat_smooth).
 
 ![](proposal_files/figure-gfm/large-wildfires-1.png)<!-- -->
 
@@ -380,7 +381,7 @@ lg_wildfires %>%
              label = ~lg_wildfires$stat_cause_descr, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
-             stroke = FALSE, fillOpacity = 0.5,
+             stroke = FALSE, fillOpacity = 0.7,
              #clusterOptions = markerClusterOptions()
              )
 ```

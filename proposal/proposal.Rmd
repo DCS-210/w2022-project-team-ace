@@ -55,11 +55,12 @@ glimpse(US_pop)
 
 
 ## 2. Data
+See README.md for more info. 
 Some of our data sources include:
 1. Csv file from kaggle with global temp by city 
 2. Csv file from kaggle with wildfire info
 3. CSV file from kaggle on US disaster declarations (includes info on floods and hurricanes)
-and some more... add later
+
 
 
 

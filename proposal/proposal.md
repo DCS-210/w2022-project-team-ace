@@ -5,6 +5,14 @@ Team ACE
 ``` r
 library(tidyverse)
 library(broom)
+library(leaflet) ## For leaflet interactive maps
+library(sf) ## For spatial data
+library(RColorBrewer) ## For colour palettes
+library(htmltools) ## For html
+library(leafsync) ## For placing plots side by side
+library(kableExtra) ## Table output
+library(tidymodels) # modelling
+library(readr)
 ```
 
 ## 1. Introduction
@@ -155,12 +163,23 @@ glimpse(US_pop)
     ## $ `2016 Population`                          <dbl> 8537673, 3976322, 2704958, …
     ## $ `Land Area (Square Miles)`                 <dbl> 303, 469, 228, 600, 517, 13…
 
+``` r
+US_pop$Population_2016 <- US_pop$"2016 Population" # create a new column/variable
+US_pop$"2016 Population" <- NULL # remove the column
+```
+
 ## 2. Data
 
-Some of our data sources include: 1. Csv file from kaggle with global
-temp by city 2. Csv file from kaggle with wildfire info 3. CSV file from
-kaggle on US disaster declarations (includes info on floods and
-hurricanes) and some more… add later
+1.  US Temperature -
+    [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
+2.  US Disasters -
+    [Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
+3.  US Wildfires -
+    [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
+4.  Sea Level -
+    [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
+5.  US City Population -
+    [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
 
 ## 3. Data analysis plan
 
@@ -171,13 +190,6 @@ within a specific area.
 The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
 within a specific area.
-
-``` r
-#US_temp_pop <- left_join(x = US_temp,
-#                         y = US_pop,
-#                         by = "City") #%>%
-#                #filter(population > 200000)
-```
 
 ### STATISTICAL METHODS
 
@@ -192,19 +204,20 @@ correlated dataset that would either show a positive association or
 negative association between global temperature and wildfire
 probability.
 
-## Example of relevant graphs
+## Examples of relevant graphs
 
 ``` r
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
-  geom_histogram(binwidth = 1) + 
+  #geom_histogram(binwidth = 1) + 
+  geom_density() +
   labs(title = "Histogram of wildfires",
        subtitle = "From 1991 to 2015",
        x = "Year",
        y = "Count")
 ```
 
-    ## Warning: Removed 8 rows containing non-finite values (stat_bin).
+    ## Warning: Removed 8 rows containing non-finite values (stat_density).
 
 ![](proposal_files/figure-gfm/histogram-of-wildfires-1.png)<!-- -->
 
@@ -258,3 +271,67 @@ wildfires %>%
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
 ![](proposal_files/figure-gfm/large-wildfires-1.png)<!-- -->
+
+``` r
+ggplot(data = sea_lvl,
+       mapping = aes(x = Year, 
+                     y = GMSL_noGIA)) + 
+  geom_point() + 
+  geom_smooth() +
+  labs(title = "Global mean sea level rise",
+       subtitle = "Relative to 2006",
+       x = "Year",
+       y = "Global Mean Sea Level (mm)")
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](proposal_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+``` r
+US_temp_pop %>% 
+  filter(Population_2016 >= 1000000) %>% # cities with over 1 million population
+  select(dt, AverageTemperature, City, State, Population_2016) %>%
+  ggplot(mapping = aes(x = dt, 
+                       y = AverageTemperature)) + 
+    geom_smooth() + 
+    labs(title = "Temperature in Large Cities in the US",
+         subtitle = "Over the past sesquintennial, filtered for cities with pop > 1000000",
+         x = "Year",
+         y = "Average Temperature") + 
+    facet_wrap( ~ City)
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 353 rows containing non-finite values (stat_smooth).
+
+![](proposal_files/figure-gfm/temp-large-cities-1.png)<!-- -->
+
+Need to do: remove letters from lat and long in `US_temp_pop`.
+
+``` r
+US_temp_pop <- US_temp_pop %>%
+  mutate(Latitude = str_remove_all(Latitude, "[NESW]"),
+         Longitude = str_remove_all(Longitude, "[NESW]"))
+US_temp_pop$Longitude <- as.numeric(US_temp_pop$Longitude)
+US_temp_pop$Latitude <- as.numeric(US_temp_pop$Latitude)
+US_temp_pop <- US_temp_pop %>%
+  mutate(Longitude = Longitude * -1) 
+```
+
+2 leaflet maps: - wildfires colored by size, have grouped circles - map
+showing cities and populations, colored by average increase in
+temperature (would need linear model I think)
+
+``` r
+leaflet(data = US_temp_pop) %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircleMarkers(lng = Longitude, 
+                   lat = Latitude, 
+                   label = City, 
+                   clusterOptions = markerClusterOptions())
+```

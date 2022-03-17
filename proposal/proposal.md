@@ -207,6 +207,8 @@ probability.
 ## Examples of relevant graphs
 
 ``` r
+wildfires <- wildfires %>%
+  mutate(wf_rad_mi = sqrt(fire_size/pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
   #geom_histogram(binwidth = 1) + 
@@ -254,8 +256,15 @@ disaster_data %>%
 ![](proposal_files/figure-gfm/disaster-hist-1.png)<!-- -->
 
 ``` r
-wildfires %>%
-  filter(fire_size_class == c("D", "E", "F", "G")) %>%
+lg_wildfires <- wildfires %>%
+  filter(fire_size_class == c("D", "E", "F", "G"))
+```
+
+    ## Warning in fire_size_class == c("D", "E", "F", "G"): longer object length is not
+    ## a multiple of shorter object length
+
+``` r
+lg_wildfires %>%
   ggplot(mapping = aes(x = disc_pre_year, 
                        y = fire_size)) + 
     geom_smooth() + 
@@ -264,9 +273,6 @@ wildfires %>%
          x = "Year of wildfire",
          y = "Wildfire size (acres)")
 ```
-
-    ## Warning in fire_size_class == c("D", "E", "F", "G"): longer object length is not
-    ## a multiple of shorter object length
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
 
@@ -330,8 +336,57 @@ leaflet(data = US_temp_pop) %>%
   setView(lng = -97, 
           lat = 39, 
           zoom = 4) %>%
-  addCircleMarkers(lng = Longitude, 
-                   lat = Latitude, 
-                   label = City, 
+  addCircleMarkers(lng = ~US_temp_pop$Longitude, 
+                   lat = ~US_temp_pop$Latitude, 
+                   label = ~US_temp_pop$City, 
                    clusterOptions = markerClusterOptions())
 ```
+
+``` r
+city_location <- US_temp_pop %>%
+  summarise(City, Latitude, Longitude) %>%
+  group_by(City) %>%
+  distinct(City, Latitude, Longitude)
+city_location %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircleMarkers(lng = ~city_location$Longitude, 
+                   lat = ~city_location$Latitude, 
+                   label = ~city_location$City, 
+                   clusterOptions = markerClusterOptions())
+```
+
+    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](proposal_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+-   wildfires colored by size, have grouped circles
+
+``` r
+wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
+lg_wildfires %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircles(lng = ~lg_wildfires$longitude, 
+             lat = ~lg_wildfires$latitude, 
+             label = ~lg_wildfires$stat_cause_descr, 
+             radius = ~lg_wildfires$wf_rad_mi,
+             color = wf_pal(lg_wildfires$fire_size_class),
+             stroke = FALSE, fillOpacity = 0.5,
+             #clusterOptions = markerClusterOptions()
+             )
+```
+
+    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](proposal_files/figure-gfm/wildfires%20by%20size-1.png)<!-- -->

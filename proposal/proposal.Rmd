@@ -158,11 +158,19 @@ wildfires %>%
   
 ```
 
-```{r}
+```{r sea level rise cleaning}
+sea_lvl <- sea_lvl %>%
+  group_by(Year) %>%
+  mutate(avg_GMSL_per_year = mean(GMSL_GIA))
+```
+
+```{r sea level rise mapping}
 ggplot(data = sea_lvl,
        mapping = aes(x = Year, 
                      y = GMSL_noGIA)) + 
   geom_point() + 
+  geom_line(aes(y = avg_GMSL_per_year, color = "red")) +
+  geom_point(aes(y = avg_GMSL_per_year, color = "orange")) +
   geom_smooth() +
   labs(title = "Global mean sea level rise",
        subtitle = "Relative to 2006",
@@ -201,6 +209,7 @@ US_temp_pop <- US_temp_pop %>%
 2 leaflet maps:
  - wildfires colored by size, have grouped circles
  - map showing cities and populations, colored by average increase in temperature (would need linear model I think)
+
 ```{r leaflet-map, eval = FALSE}
 leaflet(data = US_temp_pop) %>%
   addTiles() %>%
@@ -212,6 +221,7 @@ leaflet(data = US_temp_pop) %>%
                    label = City, 
                    clusterOptions = markerClusterOptions())
 ```
+
 
 
 

@@ -263,6 +263,32 @@ lg_wildfires %>%
              )
 ```
 
+```{r linear regression modeling on SLR}
+#US_temp_pop <- US_temp_pop %>%
+  #filter(Population_2016 >= 1000000)%>%
+  #m1 <- linear_reg() %>% # Select Model Type
+         #set_engine("lm") %>% # Set engine
+         #fit(AverageTemperature ~ City, data = US_temp_pop) code kept crashing so switched to sea_lvl instead
+
+
+  m1 <- linear_reg() %>% # Select Model Type
+         set_engine("lm") %>% # Set engine
+         fit(Year ~ GMSL_GIA , data = sea_lvl)
+m1
+```
+```{r sea level regression mapping}
+sea_lvl %>%
+ggplot(aes(x = Year, y = GMSL_GIA)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Yearly Increase in global mean sea level rise",
+    subtitle = "",
+    x = "Year",
+    y = "Global Mean Sea Level",
+  )
+```
+```
 
 
 

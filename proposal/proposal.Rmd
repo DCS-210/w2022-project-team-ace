@@ -108,6 +108,8 @@ For our question to be answered, we would need a significantly correlated datase
 
 ## Examples of relevant graphs
 ```{r histogram-of-wildfires}
+wildfires <- wildfires %>%
+  mutate(wf_rad_mi = sqrt((fire_size * 4046.86) / pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
   #geom_histogram(binwidth = 1) + 
@@ -146,8 +148,9 @@ disaster_data %>%
 ```
 
 ```{r large-wildfires}
-wildfires %>%
-  filter(fire_size_class == c("D", "E", "F", "G")) %>%
+lg_wildfires <- wildfires %>%
+  filter(fire_size_class %in% c("D", "E", "F", "G"))
+lg_wildfires %>%
   ggplot(mapping = aes(x = disc_pre_year, 
                        y = fire_size)) + 
     geom_smooth() + 
@@ -209,6 +212,7 @@ US_temp_pop <- US_temp_pop %>%
 2 leaflet maps:
  - wildfires colored by size, have grouped circles
  - map showing cities and populations, colored by average increase in temperature (would need linear model I think)
+<<<<<<< HEAD
 
 ```{r leaflet-map, eval = FALSE}
 leaflet(data = US_temp_pop) %>%
@@ -216,10 +220,47 @@ leaflet(data = US_temp_pop) %>%
   setView(lng = -97, 
           lat = 39, 
           zoom = 4) %>%
-  addCircleMarkers(lng = Longitude, 
-                   lat = Latitude, 
-                   label = City, 
+  addCircleMarkers(lng = ~US_temp_pop$Longitude, 
+                   lat = ~US_temp_pop$Latitude, 
+                   label = ~US_temp_pop$City, 
                    clusterOptions = markerClusterOptions())
+```
+
+```{r}
+city_location <- US_temp_pop %>%
+  summarise(City, Latitude, Longitude) %>%
+  group_by(City) %>%
+  distinct(City, Latitude, Longitude)
+city_location %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircleMarkers(lng = ~city_location$Longitude, 
+                   lat = ~city_location$Latitude, 
+                   label = ~city_location$City, 
+                   clusterOptions = markerClusterOptions())
+```
+
+
+- wildfires colored by size, have grouped circles
+```{r wildfires by size}
+wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
+lg_wildfires %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircles(lng = ~lg_wildfires$longitude, 
+             lat = ~lg_wildfires$latitude, 
+             label = ~lg_wildfires$stat_cause_descr, 
+             radius = ~lg_wildfires$wf_rad_mi,
+             color = wf_pal(lg_wildfires$fire_size_class),
+             stroke = FALSE, fillOpacity = 0.7,
+             #clusterOptions = markerClusterOptions()
+             )
 ```
 
 

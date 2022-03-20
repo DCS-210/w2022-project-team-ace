@@ -170,6 +170,11 @@ US_pop$"2016 Population" <- NULL # remove the column
 
 ## 2. Data
 
+See README.md for more info. Some of our data sources include: 1. Csv
+file from kaggle with global temp by city 2. Csv file from kaggle with
+wildfire info 3. CSV file from kaggle on US disaster declarations
+(includes info on floods and hurricanes)
+
 1.  US Temperature -
     [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 2.  US Disasters -
@@ -185,11 +190,11 @@ US_pop$"2016 Population" <- NULL # remove the column
 
 The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
-within a specific area.
-
-The first analysis we will do is to visualize how global temperatures
-can be used as a predictor for the number of wildfires in a given year
-within a specific area.
+within a specific area. Continuing off this theme, we will also analyze
+how global sea levels rise with rising global temperature as well. To
+give emphasis on why this is a problem, we will also include population
+data to see how much impact sea level rise and natural disasters have on
+a city.
 
 ### STATISTICAL METHODS
 
@@ -207,6 +212,8 @@ probability.
 ## Examples of relevant graphs
 
 ``` r
+wildfires <- wildfires %>%
+  mutate(wf_rad_mi = sqrt((fire_size * 4046.86) / pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
   #geom_histogram(binwidth = 1) + 
@@ -254,8 +261,9 @@ disaster_data %>%
 ![](proposal_files/figure-gfm/disaster-hist-1.png)<!-- -->
 
 ``` r
-wildfires %>%
-  filter(fire_size_class == c("D", "E", "F", "G")) %>%
+lg_wildfires <- wildfires %>%
+  filter(fire_size_class %in% c("D", "E", "F", "G"))
+lg_wildfires %>%
   ggplot(mapping = aes(x = disc_pre_year, 
                        y = fire_size)) + 
     geom_smooth() + 
@@ -265,10 +273,9 @@ wildfires %>%
          y = "Wildfire size (acres)")
 ```
 
-    ## Warning in fire_size_class == c("D", "E", "F", "G"): longer object length is not
-    ## a multiple of shorter object length
-
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 2 rows containing non-finite values (stat_smooth).
 
 ![](proposal_files/figure-gfm/large-wildfires-1.png)<!-- -->
 
@@ -330,8 +337,57 @@ leaflet(data = US_temp_pop) %>%
   setView(lng = -97, 
           lat = 39, 
           zoom = 4) %>%
-  addCircleMarkers(lng = Longitude, 
-                   lat = Latitude, 
-                   label = City, 
+  addCircleMarkers(lng = ~US_temp_pop$Longitude, 
+                   lat = ~US_temp_pop$Latitude, 
+                   label = ~US_temp_pop$City, 
                    clusterOptions = markerClusterOptions())
 ```
+
+``` r
+city_location <- US_temp_pop %>%
+  summarise(City, Latitude, Longitude) %>%
+  group_by(City) %>%
+  distinct(City, Latitude, Longitude)
+city_location %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircleMarkers(lng = ~city_location$Longitude, 
+                   lat = ~city_location$Latitude, 
+                   label = ~city_location$City, 
+                   clusterOptions = markerClusterOptions())
+```
+
+    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](proposal_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+-   wildfires colored by size, have grouped circles
+
+``` r
+wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
+lg_wildfires %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircles(lng = ~lg_wildfires$longitude, 
+             lat = ~lg_wildfires$latitude, 
+             label = ~lg_wildfires$stat_cause_descr, 
+             radius = ~lg_wildfires$wf_rad_mi,
+             color = wf_pal(lg_wildfires$fire_size_class),
+             stroke = FALSE, fillOpacity = 0.7,
+             #clusterOptions = markerClusterOptions()
+             )
+```
+
+    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](proposal_files/figure-gfm/wildfires%20by%20size-1.png)<!-- -->

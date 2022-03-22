@@ -12,7 +12,7 @@ library(tidyverse)
 library(broom)
 library(leaflet) ## For leaflet interactive maps
 library(sf) ## For spatial data
-library(RColorBrewer) ## For colour palettes
+library(RColorBrewer) ## For color palettes
 library(htmltools) ## For html
 library(leafsync) ## For placing plots side by side
 library(kableExtra) ## Table output
@@ -212,7 +212,7 @@ US_temp_pop <- US_temp_pop %>%
 2 leaflet maps:
  - wildfires colored by size, have grouped circles
  - map showing cities and populations, colored by average increase in temperature (would need linear model I think)
-<<<<<<< HEAD
+
 
 ```{r leaflet-map, eval = FALSE}
 leaflet(data = US_temp_pop) %>%

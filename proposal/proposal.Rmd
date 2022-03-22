@@ -62,6 +62,11 @@ US_pop$Population_2016 <- US_pop$"2016 Population" # create a new column/variabl
 US_pop$"2016 Population" <- NULL # remove the column
 ```
 
+```{r load-data-co2, message=FALSE}
+global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
+glimpse(global_co2)
+```
+
 
 
 
@@ -78,7 +83,7 @@ Some of our data sources include:
 3. US Wildfires - [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
 4. Sea Level - [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
 5. US City Population - [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
-
+6. Global CO2 data - [Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
 
 
 
@@ -214,18 +219,6 @@ US_temp_pop <- US_temp_pop %>%
  - map showing cities and populations, colored by average increase in temperature (would need linear model I think)
 
 
-```{r leaflet-map, eval = FALSE}
-leaflet(data = US_temp_pop) %>%
-  addTiles() %>%
-  setView(lng = -97, 
-          lat = 39, 
-          zoom = 4) %>%
-  addCircleMarkers(lng = ~US_temp_pop$Longitude, 
-                   lat = ~US_temp_pop$Latitude, 
-                   label = ~US_temp_pop$City, 
-                   clusterOptions = markerClusterOptions())
-```
-
 ```{r}
 city_location <- US_temp_pop %>%
   summarise(City, Latitude, Longitude) %>%
@@ -288,7 +281,29 @@ ggplot(aes(x = Year, y = GMSL_GIA)) +
       x = "Year",
       y = "Global Mean Sea Level")
 ```
+
+```{r global_co2}
+global_co2 %>%
+ggplot(mapping = aes(x = Age_yrBP, y = CO2_ppm)) + 
+  geom_line() + 
+  scale_x_reverse() +
+  theme_bw() + 
+   labs(title = "Global CO2 levels",
+      subtitle = "Over the past 800ka",
+      x = "Year BP",
+      y = "CO2 levels (ppm)")
 ```
 
-
+```{r global_co2}
+global_co2 %>%
+  mutate(Date = as.Date(Date)) %>%
+ggplot(mapping = aes(x = Date, y = co2_ppm)) + 
+  geom_line() + 
+  theme_bw() + 
+  scale_x_date(date_labels = "%Y %b %d") + 
+   labs(title = "Mauna Loa CO2 levels",
+      subtitle = "Since 1958",
+      x = "Date",
+      y = "CO2 levels (ppm)")
+```
 

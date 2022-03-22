@@ -258,12 +258,13 @@ lg_wildfires %>%
              label = ~lg_wildfires$stat_cause_descr, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
-             stroke = FALSE, fillOpacity = 0.7,
+             stroke = FALSE,
+             fillOpacity = 0.7,
              #clusterOptions = markerClusterOptions()
              )
 ```
 
-```{r linear regression modeling on SLR}
+```{r linear-regression-modeling-on-SLR}
 #US_temp_pop <- US_temp_pop %>%
   #filter(Population_2016 >= 1000000)%>%
   #m1 <- linear_reg() %>% # Select Model Type
@@ -271,22 +272,21 @@ lg_wildfires %>%
          #fit(AverageTemperature ~ City, data = US_temp_pop) code kept crashing so switched to sea_lvl instead
 
 
-  m1 <- linear_reg() %>% # Select Model Type
-         set_engine("lm") %>% # Set engine
-         fit(Year ~ GMSL_GIA , data = sea_lvl)
+m1 <- linear_reg() %>% # Select Model Type
+      set_engine("lm") %>% # Set engine
+      fit(Year ~ GMSL_GIA , data = sea_lvl)
 m1
 ```
-```{r sea level regression mapping}
+```{r sea-level-regression-mapping}
 sea_lvl %>%
 ggplot(aes(x = Year, y = GMSL_GIA)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    title = "Yearly Increase in global mean sea level rise",
-    subtitle = "",
-    x = "Year",
-    y = "Global Mean Sea Level",
-  )
+  geom_line(aes(y = avg_GMSL_per_year))
+  labs(title = "Yearly Increase in global mean sea level rise",
+      subtitle = "A linear model",
+      x = "Year",
+      y = "Global Mean Sea Level")
 ```
 ```
 

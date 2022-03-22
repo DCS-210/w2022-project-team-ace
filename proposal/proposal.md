@@ -337,7 +337,7 @@ US_temp_pop <- US_temp_pop %>%
 
 2 leaflet maps: - wildfires colored by size, have grouped circles - map
 showing cities and populations, colored by average increase in
-temperature (would need linear model I think) \<\<\<\<\<\<\< HEAD
+temperature (would need linear model I think)
 
 ``` r
 leaflet(data = US_temp_pop) %>%
@@ -389,7 +389,8 @@ lg_wildfires %>%
              label = ~lg_wildfires$stat_cause_descr, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
-             stroke = FALSE, fillOpacity = 0.7,
+             stroke = FALSE,
+             fillOpacity = 0.7,
              #clusterOptions = markerClusterOptions()
              )
 ```
@@ -408,15 +409,15 @@ lg_wildfires %>%
          #fit(AverageTemperature ~ City, data = US_temp_pop) code kept crashing so switched to sea_lvl instead
 
 
-  m1 <- linear_reg() %>% # Select Model Type
-         set_engine("lm") %>% # Set engine
-         fit(Year ~ GMSL_GIA , data = sea_lvl)
+m1 <- linear_reg() %>% # Select Model Type
+      set_engine("lm") %>% # Set engine
+      fit(Year ~ GMSL_GIA , data = sea_lvl)
 m1
 ```
 
     ## parsnip model object
     ## 
-    ## Fit time:  3ms 
+    ## Fit time:  4ms 
     ## 
     ## Call:
     ## stats::lm(formula = Year ~ GMSL_GIA, data = data)
@@ -430,15 +431,33 @@ sea_lvl %>%
 ggplot(aes(x = Year, y = GMSL_GIA)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    title = "Yearly Increase in global mean sea level rise",
-    subtitle = "",
-    x = "Year",
-    y = "Global Mean Sea Level",
-  )
+  geom_line(aes(y = avg_GMSL_per_year))
 ```
 
     ## `geom_smooth()` using formula 'y ~ x'
 
-![](proposal_files/figure-gfm/sea%20level%20regression%20mapping-1.png)<!-- -->
+![](proposal_files/figure-gfm/sea-level-regression-mapping-1.png)<!-- -->
+
+``` r
+  labs(title = "Yearly Increase in global mean sea level rise",
+      subtitle = "A linear model",
+      x = "Year",
+      y = "Global Mean Sea Level")
+```
+
+    ## $x
+    ## [1] "Year"
+    ## 
+    ## $y
+    ## [1] "Global Mean Sea Level"
+    ## 
+    ## $title
+    ## [1] "Yearly Increase in global mean sea level rise"
+    ## 
+    ## $subtitle
+    ## [1] "A linear model"
+    ## 
+    ## attr(,"class")
+    ## [1] "labels"
+
 \`\`\`

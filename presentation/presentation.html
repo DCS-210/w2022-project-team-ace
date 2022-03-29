@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Presentation title</title>
+    <title>Where not to live :)</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Team name   Names of team members" />
-    <meta name="date" content="2020-11-24" />
-    <script src="libs/header-attrs-2.5.3/header-attrs.js"></script>
+    <meta name="author" content="Team ACE   Austin, Chenemi, Evan" />
+    <meta name="date" content="2022-03-22" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Presentation title
-## Presentation subtitle (if any)
-### Team name <br> Names of team members
-### University of Edinburgh
-### 2020-11-24
+# Where not to live :)
+## An Analysis of Rising Temperatures and All The Fun That Comes with
+That
+### Team ACE <br> Austin, Chenemi, Evan
+### Bates College
+### 2022-03-22
 
 ---
 
@@ -30,14 +31,14 @@ class: center, middle, inverse, title-slide
 
 ```r
 style_xaringan(
-  title_slide_background_image = "img/confetti.jpg"
+  title_slide_background_image = "img/globe_image_map.jpeg"
 )
 ```
 
 
 class: center, middle
 
-## A statement of the overall goal / research question
+How do rising global temperatures broadly affect the frequency and severity of natural disasters. 
 
 ---
 
@@ -103,7 +104,7 @@ tidy(model)
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
@@ -115,7 +116,7 @@ glance(model)
 ```
 
 ```
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.
@@ -257,6 +258,7 @@ Limitations:
 <script>var slideshow = remark.create({
 "ratio": "16:9",
 "highlightStyle": "github",
+"color": "black",
 "highlightLines": true,
 "countIncrementalSlides": false
 });

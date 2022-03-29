@@ -1,7 +1,7 @@
 ---
-title: "Presentation title"
-subtitle: "Presentation subtitle (if any)"
-author: "Team name <br> Names of team members"
+title: "Where not to live when we're older"
+subtitle: "An Analysis of Rising Temperatures and All The Fun That Comes with That"
+author: "Team ACE <br> Austin, Chenemi, Evan"
 institute: "Bates College"
 date: "`r Sys.Date()`"
 output:
@@ -35,14 +35,14 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 
 ```{r}
 style_xaringan(
-  title_slide_background_image = "img/confetti.jpg"
+  title_slide_background_image = "img/globe_image_map.jpeg"
 )
 ```
 
 
 class: center, middle
 
-## A statement of the overall goal / research question
+How do rising global temperatures broadly affect the frequency and severity of natural disasters. 
 
 ---
 

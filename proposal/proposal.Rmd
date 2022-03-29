@@ -163,7 +163,6 @@ lg_wildfires %>%
          subtitle = "Wildfires of class D, E, F, and G, size of 100 acres or more",
          x = "Year of wildfire",
          y = "Wildfire size (acres)")
-  
 ```
 
 ```{r sea level rise cleaning}

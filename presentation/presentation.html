@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Presentation title</title>
+    <title>The World is Ending</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Team name   Names of team members" />
+    <meta name="author" content="Team ACE   Austin Gilbride, Chenemi Maji, Evan" />
     <meta name="date" content="2022-03-29" />
     <script src="libs/header-attrs-2.12/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -12,9 +12,9 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Presentation title
-## Presentation subtitle (if any)
-### Team name <br> Names of team members
+# The World is Ending
+## Accessible data for climate change
+### Team ACE <br> Austin Gilbride, Chenemi Maji, Evan
 ### Bates College
 ### 2022-03-29
 
@@ -28,10 +28,14 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+
 ```r
 style_xaringan(
-  title_slide_background_image = "img/confetti.jpg"
-)
+  title_slide_background_image = "img/climate.jpg",
+  title_slide_text_color = "#000000"
+  )
 ```
 
 
@@ -39,6 +43,36 @@ class: center, middle
 
 ## A statement of the overall goal / research question
 
+---
+
+## Coloured content boxes
+
+Use `.content-box-blue` (or gray/grey, army, green, purple, red, or yellow) to produce a box with coloured background. Size depends on content.
+
+`.content-box-blue[I feel blue]` yields
+
+.content-box-blue[I feel blue]
+
+Wrap in `.full-width` to expand the width
+
+.full-width[.content-box-red[I feel even more blue]]
+
+If you have content in columns then you get
+
+.pull-left[.full-width[.content-box-yellow[**WARNING** Look out for minons or bananas]]]
+.pull-right[.full-width[.content-box-yellow[The box to the left was created using `.pull-left[.full-width[.content-box-yellow[]]]`]]]
+
+
+---
+
+## Stacking fancy picture options
+
+.pull-left[
+Add `.opacity`
+
+.opacity[
+&lt;img src="img/white_background.jpg" width="80%" /&gt;
+]
 ---
 
 class: inverse, center, middle
@@ -139,7 +173,7 @@ glance(model)
 - goes here
 ]
 .pull-right[
-&lt;img src="presentation_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-3-1.png" width="100%" /&gt;
 ]
 
 ---

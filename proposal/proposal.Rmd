@@ -275,7 +275,7 @@ sea_lvl %>%
 ggplot(aes(x = Year, y = GMSL_GIA)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE) +
-  geom_line(aes(y = avg_GMSL_per_year))
+  geom_line(aes(y = avg_GMSL_per_year)) +
   labs(title = "Yearly Increase in global mean sea level rise",
       subtitle = "A linear model",
       x = "Year",
@@ -284,26 +284,28 @@ ggplot(aes(x = Year, y = GMSL_GIA)) +
 
 ```{r global_co2}
 global_co2 %>%
-ggplot(mapping = aes(x = Age_yrBP, y = CO2_ppm)) + 
+  mutate(ageKa = Age_yrBP/1000) %>%
+ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) + 
   geom_line() + 
   scale_x_reverse() +
   theme_bw() + 
    labs(title = "Global CO2 levels",
       subtitle = "Over the past 800ka",
-      x = "Year BP",
+      x = "Age (Ka BP)",
       y = "CO2 levels (ppm)")
 ```
 
-```{r global_co2}
+```{r recent_co2}
 global_co2 %>%
   mutate(Date = as.Date(Date)) %>%
 ggplot(mapping = aes(x = Date, y = co2_ppm)) + 
-  geom_line() + 
+  geom_line() +
+  geom_smooth(color = "red", se = FALSE) +
   theme_bw() + 
   scale_x_date(date_labels = "%Y %b %d") + 
-   labs(title = "Mauna Loa CO2 levels",
-      subtitle = "Since 1958",
-      x = "Date",
-      y = "CO2 levels (ppm)")
+  labs(title = "Mauna Loa CO2 levels",
+       subtitle = "Since 1958",
+       x = "Date",
+       y = "CO2 levels (ppm)")
 ```
 

@@ -26,13 +26,10 @@ Rows: 687289
 NOTE: only included relevant variables names
 File name: us_disaster_declarations.csv
 
-<<<<<<< HEAD
-[source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72) 
-=======
 [Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
 Columns: 22
 Rows: 62547
->>>>>>> 6ab45f6d93388a74038e21ab53fd8473a1b97974
+
 
 - `fema_declaration_string`: gives fema code for the disaster
 - `disaster_number`: gives the number of the disaster in the order that it occurred in the state.
@@ -124,6 +121,14 @@ Rows: 754
 - `Population Density` - Info on the population density of each city 
 - `2016 Population` - total population of the city in 2016
 - `Land Area` - describes the total size of the city in square miles. 
+
+
+## Global CO2 data
+File name: co2_data.csv
+[Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
+Columns: 6
+Rows: 1346 
+
 
 
 

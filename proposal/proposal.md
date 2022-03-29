@@ -7,7 +7,7 @@ library(tidyverse)
 library(broom)
 library(leaflet) ## For leaflet interactive maps
 library(sf) ## For spatial data
-library(RColorBrewer) ## For colour palettes
+library(RColorBrewer) ## For color palettes
 library(htmltools) ## For html
 library(leafsync) ## For placing plots side by side
 library(kableExtra) ## Table output
@@ -280,10 +280,18 @@ lg_wildfires %>%
 ![](proposal_files/figure-gfm/large-wildfires-1.png)<!-- -->
 
 ``` r
+sea_lvl <- sea_lvl %>%
+  group_by(Year) %>%
+  mutate(avg_GMSL_per_year = mean(GMSL_GIA))
+```
+
+``` r
 ggplot(data = sea_lvl,
        mapping = aes(x = Year, 
                      y = GMSL_noGIA)) + 
   geom_point() + 
+  geom_line(aes(y = avg_GMSL_per_year, color = "red")) +
+  geom_point(aes(y = avg_GMSL_per_year, color = "orange")) +
   geom_smooth() +
   labs(title = "Global mean sea level rise",
        subtitle = "Relative to 2006",
@@ -293,7 +301,7 @@ ggplot(data = sea_lvl,
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 
-![](proposal_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+![](proposal_files/figure-gfm/sea%20level%20rise%20mapping-1.png)<!-- -->
 
 ``` r
 US_temp_pop %>% 
@@ -364,7 +372,7 @@ city_location %>%
     ## TypeError: Attempting to change the setter of an unconfigurable property.
     ## TypeError: Attempting to change the setter of an unconfigurable property.
 
-![](proposal_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](proposal_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 -   wildfires colored by size, have grouped circles
 
@@ -381,7 +389,8 @@ lg_wildfires %>%
              label = ~lg_wildfires$stat_cause_descr, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
-             stroke = FALSE, fillOpacity = 0.7,
+             stroke = FALSE,
+             fillOpacity = 0.7,
              #clusterOptions = markerClusterOptions()
              )
 ```
@@ -391,3 +400,64 @@ lg_wildfires %>%
     ## TypeError: Attempting to change the setter of an unconfigurable property.
 
 ![](proposal_files/figure-gfm/wildfires%20by%20size-1.png)<!-- -->
+
+``` r
+#US_temp_pop <- US_temp_pop %>%
+  #filter(Population_2016 >= 1000000)%>%
+  #m1 <- linear_reg() %>% # Select Model Type
+         #set_engine("lm") %>% # Set engine
+         #fit(AverageTemperature ~ City, data = US_temp_pop) code kept crashing so switched to sea_lvl instead
+
+
+m1 <- linear_reg() %>% # Select Model Type
+      set_engine("lm") %>% # Set engine
+      fit(Year ~ GMSL_GIA , data = sea_lvl)
+m1
+```
+
+    ## parsnip model object
+    ## 
+    ## Fit time:  4ms 
+    ## 
+    ## Call:
+    ## stats::lm(formula = Year ~ GMSL_GIA, data = data)
+    ## 
+    ## Coefficients:
+    ## (Intercept)     GMSL_GIA  
+    ##    2004.781        0.318
+
+``` r
+sea_lvl %>%
+ggplot(aes(x = Year, y = GMSL_GIA)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_line(aes(y = avg_GMSL_per_year))
+```
+
+    ## `geom_smooth()` using formula 'y ~ x'
+
+![](proposal_files/figure-gfm/sea-level-regression-mapping-1.png)<!-- -->
+
+``` r
+  labs(title = "Yearly Increase in global mean sea level rise",
+      subtitle = "A linear model",
+      x = "Year",
+      y = "Global Mean Sea Level")
+```
+
+    ## $x
+    ## [1] "Year"
+    ## 
+    ## $y
+    ## [1] "Global Mean Sea Level"
+    ## 
+    ## $title
+    ## [1] "Yearly Increase in global mean sea level rise"
+    ## 
+    ## $subtitle
+    ## [1] "A linear model"
+    ## 
+    ## attr(,"class")
+    ## [1] "labels"
+
+\`\`\`

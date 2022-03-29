@@ -12,7 +12,7 @@ library(tidyverse)
 library(broom)
 library(leaflet) ## For leaflet interactive maps
 library(sf) ## For spatial data
-library(RColorBrewer) ## For colour palettes
+library(RColorBrewer) ## For color palettes
 library(htmltools) ## For html
 library(leafsync) ## For placing plots side by side
 library(kableExtra) ## Table output
@@ -62,6 +62,11 @@ US_pop$Population_2016 <- US_pop$"2016 Population" # create a new column/variabl
 US_pop$"2016 Population" <- NULL # remove the column
 ```
 
+```{r load-data-co2, message=FALSE}
+global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
+glimpse(global_co2)
+```
+
 
 
 
@@ -78,7 +83,7 @@ Some of our data sources include:
 3. US Wildfires - [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
 4. Sea Level - [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
 5. US City Population - [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
-
+6. Global CO2 data - [Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
 
 
 
@@ -212,19 +217,7 @@ US_temp_pop <- US_temp_pop %>%
 2 leaflet maps:
  - wildfires colored by size, have grouped circles
  - map showing cities and populations, colored by average increase in temperature (would need linear model I think)
-<<<<<<< HEAD
 
-```{r leaflet-map, eval = FALSE}
-leaflet(data = US_temp_pop) %>%
-  addTiles() %>%
-  setView(lng = -97, 
-          lat = 39, 
-          zoom = 4) %>%
-  addCircleMarkers(lng = ~US_temp_pop$Longitude, 
-                   lat = ~US_temp_pop$Latitude, 
-                   label = ~US_temp_pop$City, 
-                   clusterOptions = markerClusterOptions())
-```
 
 ```{r}
 city_location <- US_temp_pop %>%
@@ -258,12 +251,13 @@ lg_wildfires %>%
              label = ~lg_wildfires$stat_cause_descr, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
-             stroke = FALSE, fillOpacity = 0.7,
+             stroke = FALSE,
+             fillOpacity = 0.7,
              #clusterOptions = markerClusterOptions()
              )
 ```
 
-```{r linear regression modeling on SLR}
+```{r linear-regression-modeling-on-SLR}
 #US_temp_pop <- US_temp_pop %>%
   #filter(Population_2016 >= 1000000)%>%
   #m1 <- linear_reg() %>% # Select Model Type
@@ -271,24 +265,45 @@ lg_wildfires %>%
          #fit(AverageTemperature ~ City, data = US_temp_pop) code kept crashing so switched to sea_lvl instead
 
 
-  m1 <- linear_reg() %>% # Select Model Type
-         set_engine("lm") %>% # Set engine
-         fit(Year ~ GMSL_GIA , data = sea_lvl)
+m1 <- linear_reg() %>% # Select Model Type
+      set_engine("lm") %>% # Set engine
+      fit(Year ~ GMSL_GIA , data = sea_lvl)
 m1
 ```
-```{r sea level regression mapping}
+```{r sea-level-regression-mapping}
 sea_lvl %>%
 ggplot(aes(x = Year, y = GMSL_GIA)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE) +
-  labs(
-    title = "Yearly Increase in global mean sea level rise",
-    subtitle = "",
-    x = "Year",
-    y = "Global Mean Sea Level",
-  )
-```
+  geom_line(aes(y = avg_GMSL_per_year))
+  labs(title = "Yearly Increase in global mean sea level rise",
+      subtitle = "A linear model",
+      x = "Year",
+      y = "Global Mean Sea Level")
 ```
 
+```{r global_co2}
+global_co2 %>%
+ggplot(mapping = aes(x = Age_yrBP, y = CO2_ppm)) + 
+  geom_line() + 
+  scale_x_reverse() +
+  theme_bw() + 
+   labs(title = "Global CO2 levels",
+      subtitle = "Over the past 800ka",
+      x = "Year BP",
+      y = "CO2 levels (ppm)")
+```
 
+```{r global_co2}
+global_co2 %>%
+  mutate(Date = as.Date(Date)) %>%
+ggplot(mapping = aes(x = Date, y = co2_ppm)) + 
+  geom_line() + 
+  theme_bw() + 
+  scale_x_date(date_labels = "%Y %b %d") + 
+   labs(title = "Mauna Loa CO2 levels",
+      subtitle = "Since 1958",
+      x = "Date",
+      y = "CO2 levels (ppm)")
+```
 

@@ -295,7 +295,7 @@ ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) +
       y = "CO2 levels (ppm)")
 ```
 
-```{r global_co2}
+```{r recent_co2}
 global_co2 %>%
   mutate(Date = as.Date(Date)) %>%
 ggplot(mapping = aes(x = Date, y = co2_ppm)) + 

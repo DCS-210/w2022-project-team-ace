@@ -168,6 +168,20 @@ US_pop$Population_2016 <- US_pop$"2016 Population" # create a new column/variabl
 US_pop$"2016 Population" <- NULL # remove the column
 ```
 
+``` r
+global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
+glimpse(global_co2)
+```
+
+    ## Rows: 1,346
+    ## Columns: 6
+    ## $ Age_yrBP   <dbl> 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 25, 26, 27, 28, 28,…
+    ## $ CO2_ppm    <dbl> 378.7, 376.7, 374.7, 372.8, 370.5, 368.3, 366.8, 365.5, 363…
+    ## $ Source_ice <chr> "Law Dome", "Law Dome", "Law Dome", "Law Dome", "Law Dome",…
+    ## $ Date       <date> 1958-03-15, 1958-04-15, 1958-05-15, 1958-07-15, 1958-08-15…
+    ## $ co2_ppm    <dbl> 315.71, 317.45, 317.51, 315.86, 314.93, 313.21, 313.33, 314…
+    ## $ Source     <chr> "Mauna Loa", "Mauna Loa", "Mauna Loa", "Mauna Loa", "Mauna …
+
 ## 2. Data
 
 See README.md for more info. Some of our data sources include: 1. Csv
@@ -185,6 +199,8 @@ wildfire info 3. CSV file from kaggle on US disaster declarations
     [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
 5.  US City Population -
     [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
+6.  Global CO2 data -
+    [Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
 
 ## 3. Data analysis plan
 
@@ -340,18 +356,6 @@ showing cities and populations, colored by average increase in
 temperature (would need linear model I think)
 
 ``` r
-leaflet(data = US_temp_pop) %>%
-  addTiles() %>%
-  setView(lng = -97, 
-          lat = 39, 
-          zoom = 4) %>%
-  addCircleMarkers(lng = ~US_temp_pop$Longitude, 
-                   lat = ~US_temp_pop$Latitude, 
-                   label = ~US_temp_pop$City, 
-                   clusterOptions = markerClusterOptions())
-```
-
-``` r
 city_location <- US_temp_pop %>%
   summarise(City, Latitude, Longitude) %>%
   group_by(City) %>%
@@ -417,7 +421,7 @@ m1
 
     ## parsnip model object
     ## 
-    ## Fit time:  4ms 
+    ## Fit time:  3ms 
     ## 
     ## Call:
     ## stats::lm(formula = Year ~ GMSL_GIA, data = data)
@@ -431,7 +435,11 @@ sea_lvl %>%
 ggplot(aes(x = Year, y = GMSL_GIA)) +
   geom_point(alpha = 0.4) +
   geom_smooth(method = "lm", se = FALSE) +
-  geom_line(aes(y = avg_GMSL_per_year))
+  geom_line(aes(y = avg_GMSL_per_year)) +
+  labs(title = "Yearly Increase in global mean sea level rise",
+      subtitle = "A linear model",
+      x = "Year",
+      y = "Global Mean Sea Level")
 ```
 
     ## `geom_smooth()` using formula 'y ~ x'
@@ -439,25 +447,38 @@ ggplot(aes(x = Year, y = GMSL_GIA)) +
 ![](proposal_files/figure-gfm/sea-level-regression-mapping-1.png)<!-- -->
 
 ``` r
-  labs(title = "Yearly Increase in global mean sea level rise",
-      subtitle = "A linear model",
-      x = "Year",
-      y = "Global Mean Sea Level")
+global_co2 %>%
+  mutate(ageKa = Age_yrBP/1000) %>%
+ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) + 
+  geom_line() + 
+  scale_x_reverse() +
+  theme_bw() + 
+   labs(title = "Global CO2 levels",
+      subtitle = "Over the past 800ka",
+      x = "Age (Ka BP)",
+      y = "CO2 levels (ppm)")
 ```
 
-    ## $x
-    ## [1] "Year"
-    ## 
-    ## $y
-    ## [1] "Global Mean Sea Level"
-    ## 
-    ## $title
-    ## [1] "Yearly Increase in global mean sea level rise"
-    ## 
-    ## $subtitle
-    ## [1] "A linear model"
-    ## 
-    ## attr(,"class")
-    ## [1] "labels"
+![](proposal_files/figure-gfm/global_co2-1.png)<!-- -->
 
-\`\`\`
+``` r
+global_co2 %>%
+  mutate(Date = as.Date(Date)) %>%
+ggplot(mapping = aes(x = Date, y = co2_ppm)) + 
+  geom_line() +
+  geom_smooth(color = "red", se = FALSE) +
+  theme_bw() + 
+  scale_x_date(date_labels = "%Y %b %d") + 
+  labs(title = "Mauna Loa CO2 levels",
+       subtitle = "Since 1958",
+       x = "Date",
+       y = "CO2 levels (ppm)")
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 584 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 584 row(s) containing missing values (geom_path).
+
+![](proposal_files/figure-gfm/recent_co2-1.png)<!-- -->

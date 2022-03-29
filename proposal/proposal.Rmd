@@ -117,7 +117,6 @@ wildfires <- wildfires %>%
   mutate(wf_rad_mi = sqrt((fire_size * 4046.86) / pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
-  #geom_histogram(binwidth = 1) + 
   geom_density() +
   labs(title = "Histogram of wildfires",
        subtitle = "From 1991 to 2015",
@@ -144,6 +143,7 @@ disaster_data %>%
 "Volcano")) %>%
   ggplot(mapping = aes(x = fy_declared)) +
     geom_histogram(binwidth = 10) + 
+    #geom_density() + 
     facet_wrap( ~ incident_type) +
     theme(axis.text.x = element_text(angle = 45)) + 
     labs(title = "Histogram of major disasters",
@@ -219,7 +219,7 @@ US_temp_pop <- US_temp_pop %>%
  - map showing cities and populations, colored by average increase in temperature (would need linear model I think)
 
 
-```{r}
+```{r include=FALSE}
 city_location <- US_temp_pop %>%
   summarise(City, Latitude, Longitude) %>%
   group_by(City) %>%
@@ -238,7 +238,7 @@ city_location %>%
 
 
 - wildfires colored by size, have grouped circles
-```{r wildfires by size}
+```{r wildfires-by-size}
 wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
 lg_wildfires %>%
   leaflet() %>%

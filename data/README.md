@@ -129,6 +129,12 @@ File name: co2_data.csv
 Columns: 6
 Rows: 1346 
 
-
+This data is not tidy. The first 3 columns are data for Ice cores, the last 3 are Mauna Loa CO2 data.
+- `Age_yrBp` - Age in years before present
+- `CO2_ppm` - Parts per million CO2
+- `Source_ice` - Source core 
+- `Date` - Date of data recorded
+- `co2_ppm` - Parts per million CO2
+- `Source` - Location of data
 
 

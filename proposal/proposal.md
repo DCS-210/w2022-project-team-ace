@@ -5,6 +5,14 @@ Team ACE
 ``` r
 library(tidyverse)
 library(broom)
+library(leaflet) ## For leaflet interactive maps
+library(sf) ## For spatial data
+library(RColorBrewer) ## For color palettes
+library(htmltools) ## For html
+library(leafsync) ## For placing plots side by side
+library(kableExtra) ## Table output
+library(tidymodels) # modelling
+library(readr)
 ```
 
 ## 1. Introduction
@@ -155,29 +163,54 @@ glimpse(US_pop)
     ## $ `2016 Population`                          <dbl> 8537673, 3976322, 2704958, …
     ## $ `Land Area (Square Miles)`                 <dbl> 303, 469, 228, 600, 517, 13…
 
+``` r
+US_pop$Population_2016 <- US_pop$"2016 Population" # create a new column/variable
+US_pop$"2016 Population" <- NULL # remove the column
+```
+
+``` r
+global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
+glimpse(global_co2)
+```
+
+    ## Rows: 1,346
+    ## Columns: 6
+    ## $ Age_yrBP   <dbl> 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 25, 26, 27, 28, 28,…
+    ## $ CO2_ppm    <dbl> 378.7, 376.7, 374.7, 372.8, 370.5, 368.3, 366.8, 365.5, 363…
+    ## $ Source_ice <chr> "Law Dome", "Law Dome", "Law Dome", "Law Dome", "Law Dome",…
+    ## $ Date       <date> 1958-03-15, 1958-04-15, 1958-05-15, 1958-07-15, 1958-08-15…
+    ## $ co2_ppm    <dbl> 315.71, 317.45, 317.51, 315.86, 314.93, 313.21, 313.33, 314…
+    ## $ Source     <chr> "Mauna Loa", "Mauna Loa", "Mauna Loa", "Mauna Loa", "Mauna …
+
 ## 2. Data
 
-Some of our data sources include: 1. Csv file from kaggle with global
-temp by city 2. Csv file from kaggle with wildfire info 3. CSV file from
-kaggle on US disaster declarations (includes info on floods and
-hurricanes) and some more… add later
+See README.md for more info. Some of our data sources include: 1. Csv
+file from kaggle with global temp by city 2. Csv file from kaggle with
+wildfire info 3. CSV file from kaggle on US disaster declarations
+(includes info on floods and hurricanes)
+
+1.  US Temperature -
+    [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
+2.  US Disasters -
+    [Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
+3.  US Wildfires -
+    [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
+4.  Sea Level -
+    [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
+5.  US City Population -
+    [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
+6.  Global CO2 data -
+    [Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
 
 ## 3. Data analysis plan
 
 The first analysis we will do is to visualize how global temperatures
 can be used as a predictor for the number of wildfires in a given year
-within a specific area.
-
-The first analysis we will do is to visualize how global temperatures
-can be used as a predictor for the number of wildfires in a given year
-within a specific area.
-
-``` r
-#US_temp_pop <- left_join(x = US_temp,
-#                         y = US_pop,
-#                         by = "City") #%>%
-#                #filter(population > 200000)
-```
+within a specific area. Continuing off this theme, we will also analyze
+how global sea levels rise with rising global temperature as well. To
+give emphasis on why this is a problem, we will also include population
+data to see how much impact sea level rise and natural disasters have on
+a city.
 
 ### STATISTICAL METHODS
 
@@ -192,19 +225,22 @@ correlated dataset that would either show a positive association or
 negative association between global temperature and wildfire
 probability.
 
-## Example of relevant graphs
+## Examples of relevant graphs
 
 ``` r
+wildfires <- wildfires %>%
+  mutate(wf_rad_mi = sqrt((fire_size * 4046.86) / pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
-  geom_histogram(binwidth = 1) + 
+  #geom_histogram(binwidth = 1) + 
+  geom_density() +
   labs(title = "Histogram of wildfires",
        subtitle = "From 1991 to 2015",
        x = "Year",
        y = "Count")
 ```
 
-    ## Warning: Removed 8 rows containing non-finite values (stat_bin).
+    ## Warning: Removed 8 rows containing non-finite values (stat_density).
 
 ![](proposal_files/figure-gfm/histogram-of-wildfires-1.png)<!-- -->
 
@@ -229,9 +265,220 @@ disaster_data %>%
   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
 "Volcano")) %>%
   ggplot(mapping = aes(x = fy_declared)) +
-    geom_histogram(binwidth = 30) + 
+    geom_histogram(binwidth = 10) + 
     facet_wrap( ~ incident_type) +
-    theme(axis.text.x = element_text(angle = 45))
+    theme(axis.text.x = element_text(angle = 45)) + 
+    labs(title = "Histogram of major disasters",
+         subtitle = "By disaster type",
+         x = "Year",
+         y = "Count")
 ```
 
 ![](proposal_files/figure-gfm/disaster-hist-1.png)<!-- -->
+
+``` r
+lg_wildfires <- wildfires %>%
+  filter(fire_size_class %in% c("D", "E", "F", "G"))
+lg_wildfires %>%
+  ggplot(mapping = aes(x = disc_pre_year, 
+                       y = fire_size)) + 
+    geom_smooth() + 
+    labs(title = "Large wildfires by year",
+         subtitle = "Wildfires of class D, E, F, and G, size of 100 acres or more",
+         x = "Year of wildfire",
+         y = "Wildfire size (acres)")
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 2 rows containing non-finite values (stat_smooth).
+
+![](proposal_files/figure-gfm/large-wildfires-1.png)<!-- -->
+
+``` r
+sea_lvl <- sea_lvl %>%
+  group_by(Year) %>%
+  mutate(avg_GMSL_per_year = mean(GMSL_GIA))
+```
+
+``` r
+ggplot(data = sea_lvl,
+       mapping = aes(x = Year, 
+                     y = GMSL_noGIA)) + 
+  geom_point() + 
+  geom_line(aes(y = avg_GMSL_per_year, color = "red")) +
+  geom_point(aes(y = avg_GMSL_per_year, color = "orange")) +
+  geom_smooth() +
+  labs(title = "Global mean sea level rise",
+       subtitle = "Relative to 2006",
+       x = "Year",
+       y = "Global Mean Sea Level (mm)")
+```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+![](proposal_files/figure-gfm/sea%20level%20rise%20mapping-1.png)<!-- -->
+
+``` r
+US_temp_pop %>% 
+  filter(Population_2016 >= 1000000) %>% # cities with over 1 million population
+  select(dt, AverageTemperature, City, State, Population_2016) %>%
+  ggplot(mapping = aes(x = dt, 
+                       y = AverageTemperature)) + 
+    geom_smooth() + 
+    labs(title = "Temperature in Large Cities in the US",
+         subtitle = "Over the past sesquintennial, filtered for cities with pop > 1000000",
+         x = "Year",
+         y = "Average Temperature") + 
+    facet_wrap( ~ City)
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 353 rows containing non-finite values (stat_smooth).
+
+![](proposal_files/figure-gfm/temp-large-cities-1.png)<!-- -->
+
+Need to do: remove letters from lat and long in `US_temp_pop`.
+
+``` r
+US_temp_pop <- US_temp_pop %>%
+  mutate(Latitude = str_remove_all(Latitude, "[NESW]"),
+         Longitude = str_remove_all(Longitude, "[NESW]"))
+US_temp_pop$Longitude <- as.numeric(US_temp_pop$Longitude)
+US_temp_pop$Latitude <- as.numeric(US_temp_pop$Latitude)
+US_temp_pop <- US_temp_pop %>%
+  mutate(Longitude = Longitude * -1) 
+```
+
+2 leaflet maps: - wildfires colored by size, have grouped circles - map
+showing cities and populations, colored by average increase in
+temperature (would need linear model I think)
+
+``` r
+city_location <- US_temp_pop %>%
+  summarise(City, Latitude, Longitude) %>%
+  group_by(City) %>%
+  distinct(City, Latitude, Longitude)
+city_location %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircleMarkers(lng = ~city_location$Longitude, 
+                   lat = ~city_location$Latitude, 
+                   label = ~city_location$City, 
+                   clusterOptions = markerClusterOptions())
+```
+
+    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](proposal_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+-   wildfires colored by size, have grouped circles
+
+``` r
+wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
+lg_wildfires %>%
+  leaflet() %>%
+  addTiles() %>%
+  setView(lng = -97, 
+          lat = 39, 
+          zoom = 4) %>%
+  addCircles(lng = ~lg_wildfires$longitude, 
+             lat = ~lg_wildfires$latitude, 
+             label = ~lg_wildfires$stat_cause_descr, 
+             radius = ~lg_wildfires$wf_rad_mi,
+             color = wf_pal(lg_wildfires$fire_size_class),
+             stroke = FALSE,
+             fillOpacity = 0.7,
+             #clusterOptions = markerClusterOptions()
+             )
+```
+
+    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+    ## TypeError: Attempting to change the setter of an unconfigurable property.
+
+![](proposal_files/figure-gfm/wildfires%20by%20size-1.png)<!-- -->
+
+``` r
+#US_temp_pop <- US_temp_pop %>%
+  #filter(Population_2016 >= 1000000)%>%
+  #m1 <- linear_reg() %>% # Select Model Type
+         #set_engine("lm") %>% # Set engine
+         #fit(AverageTemperature ~ City, data = US_temp_pop) code kept crashing so switched to sea_lvl instead
+
+
+m1 <- linear_reg() %>% # Select Model Type
+      set_engine("lm") %>% # Set engine
+      fit(Year ~ GMSL_GIA , data = sea_lvl)
+m1
+```
+
+    ## parsnip model object
+    ## 
+    ## Fit time:  3ms 
+    ## 
+    ## Call:
+    ## stats::lm(formula = Year ~ GMSL_GIA, data = data)
+    ## 
+    ## Coefficients:
+    ## (Intercept)     GMSL_GIA  
+    ##    2004.781        0.318
+
+``` r
+sea_lvl %>%
+ggplot(aes(x = Year, y = GMSL_GIA)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", se = FALSE) +
+  geom_line(aes(y = avg_GMSL_per_year)) +
+  labs(title = "Yearly Increase in global mean sea level rise",
+      subtitle = "A linear model",
+      x = "Year",
+      y = "Global Mean Sea Level")
+```
+
+    ## `geom_smooth()` using formula 'y ~ x'
+
+![](proposal_files/figure-gfm/sea-level-regression-mapping-1.png)<!-- -->
+
+``` r
+global_co2 %>%
+  mutate(ageKa = Age_yrBP/1000) %>%
+ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) + 
+  geom_line() + 
+  scale_x_reverse() +
+  theme_bw() + 
+   labs(title = "Global CO2 levels",
+      subtitle = "Over the past 800ka",
+      x = "Age (Ka BP)",
+      y = "CO2 levels (ppm)")
+```
+
+![](proposal_files/figure-gfm/global_co2-1.png)<!-- -->
+
+``` r
+global_co2 %>%
+  mutate(Date = as.Date(Date)) %>%
+ggplot(mapping = aes(x = Date, y = co2_ppm)) + 
+  geom_line() +
+  geom_smooth(color = "red", se = FALSE) +
+  theme_bw() + 
+  scale_x_date(date_labels = "%Y %b %d") + 
+  labs(title = "Mauna Loa CO2 levels",
+       subtitle = "Since 1958",
+       x = "Date",
+       y = "CO2 levels (ppm)")
+```
+
+    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+
+    ## Warning: Removed 584 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 584 row(s) containing missing values (geom_path).
+
+![](proposal_files/figure-gfm/recent_co2-1.png)<!-- -->

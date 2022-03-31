@@ -1,7 +1,7 @@
 ---
 title: "The World is Ending"
 subtitle: "Accessible data for climate change"
-author: "Team ACE <br> Austin Gilbride, Chenemi Maji, Evan"
+author: "Team ACE <br> Austin Gilbride, Chenemi Maji, Evan Saltman"
 institute: "Bates College"
 date: "`r Sys.Date()`"
 output:

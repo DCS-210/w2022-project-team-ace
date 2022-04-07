@@ -1,5 +1,5 @@
 ---
-title: "The World is Ending"
+title: "The World is Changing"
 subtitle: "Accessible data for climate change"
 author: "Team ACE <br> Austin Gilbride, Chenemi Maji, Evan Saltman"
 institute: "Bates College"

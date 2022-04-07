@@ -1,12 +1,12 @@
 ---
 title: "The World is Changing"
-subtitle: "Accessible data for climate change"
+subtitle: "An Analysis of Rising Temperatures and All The Fun That Comes with That"
 author: "Team ACE <br> Austin Gilbride, Chenemi Maji, Evan Saltman"
 institute: "Bates College"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: xaringan-themer-ace.css
     lib_dir: libs
     nature:
       ratio: "16:9"
@@ -62,6 +62,7 @@ global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
 
 ```{r echo=FALSE}
 style_xaringan(
+
   title_slide_background_image = "img/climate.jpg",
   title_slide_text_color = "#FF0000",
   title_slide_background_color = "FFFFFF"
@@ -74,7 +75,7 @@ style_xaringan(
 ---
 class: center, middle
 
-## A statement of the overall goal / research question
+How do rising global temperatures broadly affect the frequency and severity of natural disasters. 
 
 ---
 

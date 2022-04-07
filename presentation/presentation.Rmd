@@ -6,7 +6,7 @@ institute: "Bates College"
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer.css
+    css: xaringan-themer-ace.css
     lib_dir: libs
     nature:
       ratio: "16:9"

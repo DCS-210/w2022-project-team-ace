@@ -232,7 +232,6 @@ wildfires <- wildfires %>%
   mutate(wf_rad_mi = sqrt((fire_size * 4046.86) / pi))
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
-  #geom_histogram(binwidth = 1) + 
   geom_density() +
   labs(title = "Histogram of wildfires",
        subtitle = "From 1991 to 2015",
@@ -266,6 +265,7 @@ disaster_data %>%
 "Volcano")) %>%
   ggplot(mapping = aes(x = fy_declared)) +
     geom_histogram(binwidth = 10) + 
+    #geom_density() + 
     facet_wrap( ~ incident_type) +
     theme(axis.text.x = element_text(angle = 45)) + 
     labs(title = "Histogram of major disasters",
@@ -355,29 +355,6 @@ US_temp_pop <- US_temp_pop %>%
 showing cities and populations, colored by average increase in
 temperature (would need linear model I think)
 
-``` r
-city_location <- US_temp_pop %>%
-  summarise(City, Latitude, Longitude) %>%
-  group_by(City) %>%
-  distinct(City, Latitude, Longitude)
-city_location %>%
-  leaflet() %>%
-  addTiles() %>%
-  setView(lng = -97, 
-          lat = 39, 
-          zoom = 4) %>%
-  addCircleMarkers(lng = ~city_location$Longitude, 
-                   lat = ~city_location$Latitude, 
-                   label = ~city_location$City, 
-                   clusterOptions = markerClusterOptions())
-```
-
-    ## QStandardPaths: XDG_RUNTIME_DIR not set, defaulting to '/tmp/runtime-rstudio-user'
-    ## TypeError: Attempting to change the setter of an unconfigurable property.
-    ## TypeError: Attempting to change the setter of an unconfigurable property.
-
-![](proposal_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
-
 -   wildfires colored by size, have grouped circles
 
 ``` r
@@ -403,7 +380,7 @@ lg_wildfires %>%
     ## TypeError: Attempting to change the setter of an unconfigurable property.
     ## TypeError: Attempting to change the setter of an unconfigurable property.
 
-![](proposal_files/figure-gfm/wildfires%20by%20size-1.png)<!-- -->
+![](proposal_files/figure-gfm/wildfires-by-size-1.png)<!-- -->
 
 ``` r
 #US_temp_pop <- US_temp_pop %>%

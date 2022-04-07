@@ -115,9 +115,12 @@ knitr::include_graphics("img/white_background.jpg")
 
 class: inverse, center, middle
 
-# Section title
+# Global temperatures and their relationship to natrual disasters
 
----
+
+
+
+-----
 
 # Hello World
 
@@ -185,14 +188,6 @@ iris_modified <- iris %>%
   mutate(Species = fct_other(Species, keep = "setosa"))
 ```
 
-```{r plot-iris, echo = FALSE}
-# Code hidden with echo = FALSE
-# Uses modified iris dataset from previous chunk
-# Play around with height and width until you're happy with the look
-ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
-  geom_point() + 
-  theme_minimal() # theme options: https://ggplot2.tidyverse.org/reference/ggtheme.html
-```
 
 ---
 

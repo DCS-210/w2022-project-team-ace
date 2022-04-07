@@ -60,14 +60,18 @@ US_pop$"2016 Population" <- NULL # remove the column
 global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
 ```
 
-```{r}
+```{r echo=FALSE}
 style_xaringan(
   title_slide_background_image = "img/climate.jpg",
-  title_slide_text_color = "#000000"
+  title_slide_text_color = "#FF0000",
+  title_slide_background_color = "FFFFFF"
   )
 ```
 
 
+
+
+---
 class: center, middle
 
 ## A statement of the overall goal / research question

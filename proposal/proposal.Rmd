@@ -247,7 +247,7 @@ lg_wildfires %>%
           zoom = 4) %>%
   addCircles(lng = ~lg_wildfires$longitude, 
              lat = ~lg_wildfires$latitude, 
-             label = ~lg_wildfires$stat_cause_descr, 
+             label = ~lg_wildfires$stat_cause_descr, ~lg_wildfires$disc_pre_year, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
              stroke = FALSE,

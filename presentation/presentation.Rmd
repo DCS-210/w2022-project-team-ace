@@ -172,12 +172,12 @@ ggplot(data = sea_lvl,
 * GMSL_GIA = (0.318)year + 2004.781
 ]
 .pull-right[
-```{r linear-regression-modeling-on-SLR, echo=FALSE}
-US_temp_pop <- US_temp_pop %>%
-  filter(Population_2016 >= 1000000) %>%
-  m1 <- linear_reg() %>% # Select Model Type
+#```{r linear-regression-modeling-on-SLR, echo=FALSE}
+#US_temp_pop <- US_temp_pop %>%
+  #filter(Population_2016 >= 1000000) %>%
+  #m1 <- linear_reg() %>% # Select Model Type
          set_engine("lm") %>% # Set engine
-         fit(AverageTemperature ~ City, data = US_temp_pop) #code kept crashing so switched to sea_lvl instead
+         fit(AverageTemperature ~ City, data = US_temp_pop) #code kept #crashing so switched to sea_lvl instead
 
 
 m1 <- linear_reg() %>% # Select Model Type

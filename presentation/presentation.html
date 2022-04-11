@@ -62,7 +62,9 @@ class: inverse, center, middle
 
 #Number of Wildfires since 1992
 .pull-left[
+
 * Wildfire prevention efforts
+
 * Number of Wildfires vs Acreage burned
 ]
 
@@ -86,6 +88,7 @@ class: inverse, center, middle
 ---
 #How has the global sea level increased?
 .pull-left[
+
 * Sea level has continued to increase at faster and faster rates.
 
 * In concordance with increasing CO2 levels
@@ -102,43 +105,38 @@ class: inverse, center, middle
 ]
 
 ---
-&lt;!-- ## Linear Model of Global Mean Sea level rise and US temperature and Population --&gt;
+## Linear Model of Global Mean Sea level rise and US temperature and Population
 
-&lt;!-- .pull-left[ --&gt;
-&lt;!-- * A linear model helps us predict mean global sea level --&gt;
+.pull-left[
 
-&lt;!-- * GMSL_GIA = (0.318)year + 2004.781 --&gt;
-&lt;!-- ] --&gt;
-&lt;!-- .pull-right[ --&gt;
-&lt;!-- ```{r linear-regression-modeling-on-SLR, echo=FALSE} --&gt;
-&lt;!-- US_temp_pop &lt;- US_temp_pop %&gt;% --&gt;
-&lt;!--   filter(Population_2016 &gt;= 1000000) %&gt;% --&gt;
-&lt;!--   m1 &lt;- linear_reg() %&gt;% # Select Model Type --&gt;
-&lt;!--          set_engine("lm") %&gt;% # Set engine --&gt;
-&lt;!--          fit(AverageTemperature ~ City, data = US_temp_pop) #code kept crashing so switched to sea_lvl instead --&gt;
+* A linear model helps us predict mean global sea level
+
+* GMSL_GIA = (0.318)year + 2004.781
+]
+.pull-right[
+#```{r linear-regression-modeling-on-SLR, echo=FALSE}
+#US_temp_pop &lt;- US_temp_pop %&gt;%
+  #filter(Population_2016 &gt;= 1000000) %&gt;%
+  #m1 &lt;- linear_reg() %&gt;% # Select Model Type
+         set_engine("lm") %&gt;% # Set engine
+         fit(AverageTemperature ~ City, data = US_temp_pop) #code kept #crashing so switched to sea_lvl instead
 
 
-&lt;!-- m1 &lt;- linear_reg() %&gt;% # Select Model Type --&gt;
-&lt;!--       set_engine("lm") %&gt;% # Set engine --&gt;
-&lt;!--       fit(Year ~ GMSL_GIA , data = sea_lvl) --&gt;
-&lt;!-- summary(m1) --&gt;
-&lt;!-- ``` --&gt;
+m1 &lt;- linear_reg() %&gt;% # Select Model Type
+      set_engine("lm") %&gt;% # Set engine
+      fit(Year ~ GMSL_GIA , data = sea_lvl)
+summary(m1)
+```
 
-&lt;!-- ```{r sea-level-regression-mapping, echo=FALSE} --&gt;
-&lt;!-- sea_lvl %&gt;% --&gt;
-&lt;!-- ggplot(aes(x = Year, y = GMSL_GIA)) + --&gt;
-&lt;!--   geom_point(alpha = 0.4) + --&gt;
-&lt;!--   geom_smooth(method = "lm", se = FALSE) + --&gt;
-&lt;!--   geom_line(aes(y = avg_GMSL_per_year)) + --&gt;
-&lt;!--   labs(title = "Yearly Increase in global mean sea level rise", --&gt;
-&lt;!--       subtitle = "A linear model", --&gt;
-&lt;!--       x = "Year", --&gt;
-&lt;!--       y = "Global Mean Sea Level") --&gt;
 
-&lt;!-- ``` --&gt;
-&lt;!-- ] --&gt;
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
 
-&lt;!-- --- --&gt;
+&lt;img src="presentation_files/figure-html/sea-level-regression-mapping-1.png" width="80%" /&gt;
+]
+
+---
 &lt;!-- # Visualizing the Increase in Disasters Throughout the US. --&gt;
 
 

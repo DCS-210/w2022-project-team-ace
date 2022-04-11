@@ -4,7 +4,7 @@ Document of data file names and descriptions.
 
 Data can also be found in this folder.
 
- 
+  
 ## US Temperature Data
 File name: US_temps.csv
 

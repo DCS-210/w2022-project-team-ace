@@ -1,9 +1,10 @@
 ---
+theme: jekyll-theme-minimal
 title: "The World is Changing"
 subtitle: "An Analysis of Rising Temperatures and All The Fun That Comes with It"
 author: "Team ACE <br> Austin Gilbride, Chenemi Maji, Evan Saltman"
 institute: "Bates College"
-date: "`r Sys.Date()`"
+date: "April 11, 2022"
 output:
   xaringan::moon_reader:
     css: xaringan-themer-ace.css
@@ -58,7 +59,7 @@ US_pop <- readr::read_csv(file = "../data/uscitypopdensity.csv")
 global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
 ```
 
-```{r echo=FALSE}
+```{r, echo=FALSE}
 style_xaringan(
 
   title_slide_background_image = "img/globe_image_map.jpeg",
@@ -68,7 +69,7 @@ style_xaringan(
   )
 ```
 
-
+---
 class: center, middle
 
 # How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
@@ -87,7 +88,7 @@ class: inverse, center, middle
 # Global temperatures and their relationship to natural disasters
 
 ---
-```{r temp-large-cities}
+```{r temp-large-cities, echo=FALSE}
 US_temp_pop %>% 
   filter(Population_2016 >= 1000000) %>% # cities with over 1 million population
   select(dt, AverageTemperature, City, State, Population_2016) %>%
@@ -104,8 +105,8 @@ US_temp_pop %>%
 
 
 
----
-```{r large-wildfires}
+
+```{r large-wildfires, echo=FALSE}
 lg_wildfires <- wildfires %>%
   filter(fire_size_class %in% c("D", "E", "F", "G"))
 lg_wildfires %>%
@@ -119,15 +120,21 @@ lg_wildfires %>%
 ```
 
 
-
 ---
-```{r sea level rise cleaning}
+#How has the global sea level increased? 
+.pull-left[
+* Sea level has continued to increase at faster and faster rates.
+
+* In concordance with increasing CO2 levels
+]
+.pull-right[
+```{r sea level rise cleaning, echo=FALSE}
 sea_lvl <- sea_lvl %>%
   group_by(Year) %>%
   mutate(avg_GMSL_per_year = mean(GMSL_GIA))
 ```
 
-```{r sea level rise mapping}
+```{r sea level rise mapping, echo=FALSE}
 ggplot(data = sea_lvl,
        mapping = aes(x = Year, 
                      y = GMSL_noGIA)) + 
@@ -142,19 +149,18 @@ ggplot(data = sea_lvl,
   scale_color_viridis_d()
 
 ```
-
+]
 
 ---
-
-## Plot and text
+## Linear Model of Global Mean Sea level rise and US temperature and Population
 
 .pull-left[
-- Some text
-- goes here
+* A linear model helps us predict mean global sea level
+
+* GMSL_GIA = (0.318)year + 2004.781
 ]
 .pull-right[
-
-```{r linear-regression-modeling-on-SLR}
+```{r linear-regression-modeling-on-SLR, echo=FALSE}
 US_temp_pop <- US_temp_pop %>%
   filter(Population_2016 >= 1000000)%>%
   m1 <- linear_reg() %>% # Select Model Type
@@ -165,10 +171,10 @@ US_temp_pop <- US_temp_pop %>%
 m1 <- linear_reg() %>% # Select Model Type
       set_engine("lm") %>% # Set engine
       fit(Year ~ GMSL_GIA , data = sea_lvl)
-m1
+summary(m1)
 ```
 
-```{r sea-level-regression-mapping}
+```{r sea-level-regression-mapping, echo=FALSE}
 sea_lvl %>%
 ggplot(aes(x = Year, y = GMSL_GIA)) +
   geom_point(alpha = 0.4) +
@@ -180,10 +186,12 @@ ggplot(aes(x = Year, y = GMSL_GIA)) +
       y = "Global Mean Sea Level")
 
 ```
+]
 
 ---
+# Visualizing the Increase in Disasters Throughout the US. 
 
-```{r disaster-hist}
+```{r disaster-hist, echo=FALSE}
 disaster_data %>%
   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
 "Volcano")) %>%
@@ -199,9 +207,15 @@ disaster_data %>%
   scale_color_viridis_c()
 ```
 
----
 
-```{r}
+#Leaflet Mapping of Large WildFires in the US
+---
+.pull-left[
+ - wildfires have caused $X amount of damage to communities
+ - can be prevented with $X amount of preventative work
+]
+.pull-rght[
+```{r, echo=FALSE}
 US_temp_pop <- US_temp_pop %>%
   mutate(Latitude = str_remove_all(Latitude, "[NESW]"),
          Longitude = str_remove_all(Longitude, "[NESW]"))
@@ -211,7 +225,7 @@ US_temp_pop <- US_temp_pop %>%
   mutate(Longitude = Longitude * -1) 
 ```
 
-```{r wildfires-by-size}
+```{r wildfires-by-size, echo=FALSE}
 wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
 lg_wildfires %>%
   leaflet() %>%
@@ -229,12 +243,12 @@ lg_wildfires %>%
              #clusterOptions = markerClusterOptions()
              )
 ```
-
+]
 
 ---
+#Relating global CO2 levels with increasing temperature
 
-
-```{r recent_co2}
+```{r recent_co2, echo=FALSE}
 global_co2 %>%
   mutate(Date = as.Date(Date)) %>%
 ggplot(mapping = aes(x = Date, y = co2_ppm)) + 
@@ -248,11 +262,15 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
        y = "CO2 levels (ppm)") 
 ```
 
-
-
 ---
+#CO2 level increase over the past 800 thousand years 
+.pull-right[
+- Earth has historically been in this range
+<- Since the industrial revolution we are now here
+]
 
-```{r global_co2}
+.pull-left[
+```{r global_co2, echo=FALSE}
 global_co2 %>%
   mutate(ageKa = Age_yrBP/1000) %>%
 ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) + 
@@ -264,7 +282,8 @@ ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) +
       x = "Age (Ka BP)",
       y = "CO2 levels (ppm)")
 ```
-
+]
 
 ---
+#Thank you and Questions 
 

@@ -75,7 +75,7 @@ style_xaringan(
 ---
 class: center, middle
 
-How do rising global temperatures broadly affect the frequency and severity of natural disasters. 
+How do rising global temperatures broadly affect the frequency and severity of natural disasters?
 
 ---
 

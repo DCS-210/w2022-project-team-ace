@@ -4,7 +4,7 @@ Document of data file names and descriptions.
 
 Data can also be found in this folder.
 
- 
+  
 ## US Temperature Data
 File name: US_temps.csv
 
@@ -127,6 +127,7 @@ Rows: 754
 
 ## Global CO2 data
 File name: co2_data.csv
+
 [Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
 Columns: 6
 Rows: 1346 

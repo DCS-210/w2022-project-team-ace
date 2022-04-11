@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Presentation title</title>
+    <title>The World is Changing</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Team name   Names of team members" />
-    <meta name="date" content="2022-03-29" />
-    <script src="libs/header-attrs-2.12/header-attrs.js"></script>
-    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <meta name="author" content="Team ACE   Austin Gilbride, Chenemi Maji, Evan Saltman" />
+    <meta name="date" content="2022-04-11" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer-ace.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Presentation title
-## Presentation subtitle (if any)
-### Team name <br> Names of team members
+# The World is Changing
+## An Analysis of Rising Temperatures and All The Fun That Comes with It
+### Team ACE <br> Austin Gilbride, Chenemi Maji, Evan Saltman
 ### Bates College
-### 2022-03-29
+### April 11, 2022
 
 ---
 
@@ -28,229 +28,235 @@ class: center, middle, inverse, title-slide
 
 
 
-```r
-style_xaringan(
-  title_slide_background_image = "img/confetti.jpg"
-)
-```
+
+
+
 
 
 class: center, middle
 
-## A statement of the overall goal / research question
+# How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
+
+
+
 
 ---
-
 class: inverse, center, middle
 
-# Section title
+# Average US Temperatures
+
+
+
+```
+## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+```
+
+```
+## Warning: Removed 353 rows containing non-finite values (stat_smooth).
+```
+
+&lt;img src="presentation_files/figure-html/temp-large-cities-1.png" width="80%" /&gt;
 
 ---
+class: inverse, center, middle
 
-# Hello World
-
-- Click the `Knit` button to compile your presentation
-
-- Make sure to commit and push all resulting files to your GitHub repo
-
----
-
-class: inverse, middle, center
-
-# Using xaringan
-
----
-
-# xaringan
-
-- The presentation is created using the `xaringan` package
-
-- Use `---` to separate slides and `--` for incremental builds
-
---
-
-- Like this
-
----
-
-# Layouts
-
-You can use plain text
-
-- or bullet points
-
+#Number of Wildfires since 1992
 .pull-left[
-or text in two columns `\(^*\)`
+* Wildfire prevention efforts
+* Number of Wildfires vs Acreage burned
+]
+
+.pull-right[
+
+```
+## Warning: One or more parsing issues, see `problems()` for details
+```
+
+```
+## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+```
+
+```
+## Warning: Removed 2 rows containing non-finite values (stat_smooth).
+```
+
+&lt;img src="presentation_files/figure-html/large-wildfires-1.png" width="80%" /&gt;
+]
+
+---
+#How has the global sea level increased?
+.pull-left[
+* Sea level has continued to increase at faster and faster rates.
+
+* In concordance with increasing CO2 levels
 ]
 .pull-right[
-- like
-- this
-]
-
-.footnote[
-[*] And add footnotes
-]
-
----
-
-# Code
 
 
-```r
-# a boring regression
-model &lt;- lm(dist ~ speed, data = cars)
-tidy(model)
-```
 
 ```
-## # A tibble: 2 × 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
-## 2 speed           3.93     0.416      9.46 1.49e-12
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
-```r
-glance(model)
-```
-
-```
-## # A tibble: 1 × 12
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.
-## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;
-```
-
----
-
-# Plots
-
-
-
-&lt;img src="presentation_files/figure-html/plot-iris-1.png" width="80%" /&gt;
-
----
-
-## Plot and text
-
-.pull-left[
-- Some text
-- goes here
-]
-.pull-right[
-&lt;img src="presentation_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
+&lt;img src="presentation_files/figure-html/sea level rise mapping-1.png" width="80%" /&gt;
 ]
 
 ---
+&lt;!-- ## Linear Model of Global Mean Sea level rise and US temperature and Population --&gt;
 
-# Tables
+&lt;!-- .pull-left[ --&gt;
+&lt;!-- * A linear model helps us predict mean global sea level --&gt;
 
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
+&lt;!-- * GMSL_GIA = (0.318)year + 2004.781 --&gt;
+&lt;!-- ] --&gt;
+&lt;!-- .pull-right[ --&gt;
+&lt;!-- ```{r linear-regression-modeling-on-SLR, echo=FALSE} --&gt;
+&lt;!-- US_temp_pop &lt;- US_temp_pop %&gt;% --&gt;
+&lt;!--   filter(Population_2016 &gt;= 1000000) %&gt;% --&gt;
+&lt;!--   m1 &lt;- linear_reg() %&gt;% # Select Model Type --&gt;
+&lt;!--          set_engine("lm") %&gt;% # Set engine --&gt;
+&lt;!--          fit(AverageTemperature ~ City, data = US_temp_pop) #code kept crashing so switched to sea_lvl instead --&gt;
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; Sepal.Length &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Sepal.Width &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Petal.Length &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Petal.Width &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; Species &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 4.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.0 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 5.4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3.9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1.7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; setosa &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 
----
+&lt;!-- m1 &lt;- linear_reg() %&gt;% # Select Model Type --&gt;
+&lt;!--       set_engine("lm") %&gt;% # Set engine --&gt;
+&lt;!--       fit(Year ~ GMSL_GIA , data = sea_lvl) --&gt;
+&lt;!-- summary(m1) --&gt;
+&lt;!-- ``` --&gt;
 
-# Images
+&lt;!-- ```{r sea-level-regression-mapping, echo=FALSE} --&gt;
+&lt;!-- sea_lvl %&gt;% --&gt;
+&lt;!-- ggplot(aes(x = Year, y = GMSL_GIA)) + --&gt;
+&lt;!--   geom_point(alpha = 0.4) + --&gt;
+&lt;!--   geom_smooth(method = "lm", se = FALSE) + --&gt;
+&lt;!--   geom_line(aes(y = avg_GMSL_per_year)) + --&gt;
+&lt;!--   labs(title = "Yearly Increase in global mean sea level rise", --&gt;
+&lt;!--       subtitle = "A linear model", --&gt;
+&lt;!--       x = "Year", --&gt;
+&lt;!--       y = "Global Mean Sea Level") --&gt;
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80" alt="Image credit: Photo by Jörg Angeli on Unsplash." width="60%" /&gt;
-&lt;p class="caption"&gt;Image credit: Photo by Jörg Angeli on Unsplash.&lt;/p&gt;
-&lt;/div&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ] --&gt;
 
-Or you can also include a full page image. See next slide.
+&lt;!-- --- --&gt;
+&lt;!-- # Visualizing the Increase in Disasters Throughout the US. --&gt;
 
----
 
-background-image: url(https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80)
 
----
+&lt;!-- ```{r disaster-hist, fig.alt="Density plot of natural disasters. Shows increase from 1950 to present", echo=FALSE} --&gt;
 
-# Math Expressions
+&lt;!-- disaster_data %&gt;% --&gt;
+&lt;!--   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon", --&gt;
+&lt;!-- "Volcano")) %&gt;% --&gt;
+&lt;!--   ggplot(mapping = aes(x = fy_declared)) + --&gt;
+&lt;!--     geom_histogram(binwidth = 10) + --&gt;
+&lt;!--     #geom_density() + --&gt;
+&lt;!--     facet_wrap( ~ incident_type) + --&gt;
+&lt;!--     theme(axis.text.x = element_text(angle = 45)) + --&gt;
+&lt;!--     labs(title = "Histogram of major disasters", --&gt;
+&lt;!--          subtitle = "By disaster type", --&gt;
+&lt;!--          x = "Year", --&gt;
+&lt;!--          y = "Count") + --&gt;
+&lt;!--   scale_color_viridis_c() --&gt;
 
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. &amp;#36;\alpha+\beta$ renders `\(\alpha+\beta\)`. You can use the display style with double dollar signs:
 
-```
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-```
+&lt;!-- disaster_data %&gt;% #this graph is probably good to show on the side --&gt;
+&lt;!-- ggplot(mapping = aes(x = fy_declared)) + --&gt;
+&lt;!--   geom_density() + --&gt;
+&lt;!--   theme(axis.text.x = element_text(angle = 45)) + --&gt;
+&lt;!--   labs(title = "Histogram of major disasters", --&gt;
+&lt;!--        subtitle = "By disaster type", --&gt;
+&lt;!--        x = "Year", --&gt;
+&lt;!--        y = "Count") + --&gt;
+&lt;!--   scale_color_viridis_c() --&gt;
+&lt;!-- ``` --&gt;
 
-`$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$`
 
-Limitations:
+&lt;!-- #Leaflet Mapping of Large WildFires in the US --&gt;
+&lt;!-- --- --&gt;
+&lt;!-- .pull-left[ --&gt;
+&lt;!--  - wildfires have caused $X amount of damage to communities --&gt;
+&lt;!--  - can be prevented with $X amount of preventative work --&gt;
+&lt;!-- ] --&gt;
+&lt;!-- .pull-rght[ --&gt;
+&lt;!-- ```{r, echo=FALSE} --&gt;
+&lt;!-- US_temp_pop &lt;- US_temp_pop %&gt;% --&gt;
+&lt;!--   mutate(Latitude = str_remove_all(Latitude, "[NESW]"), --&gt;
+&lt;!--          Longitude = str_remove_all(Longitude, "[NESW]")) --&gt;
+&lt;!-- US_temp_pop$Longitude &lt;- as.numeric(US_temp_pop$Longitude) --&gt;
+&lt;!-- US_temp_pop$Latitude &lt;- as.numeric(US_temp_pop$Latitude) --&gt;
+&lt;!-- US_temp_pop &lt;- US_temp_pop %&gt;% --&gt;
+&lt;!--   mutate(Longitude = Longitude * -1) --&gt;
+&lt;!-- ``` --&gt;
 
-1. The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
+&lt;!-- ```{r wildfires-by-size, echo=FALSE} --&gt;
+&lt;!-- wf_pal &lt;- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class) --&gt;
+&lt;!-- lg_wildfires %&gt;% --&gt;
+&lt;!--   leaflet() %&gt;% --&gt;
+&lt;!--   addTiles() %&gt;% --&gt;
+&lt;!--   setView(lng = -97, --&gt;
+&lt;!--           lat = 39, --&gt;
+&lt;!--           zoom = 4) %&gt;% --&gt;
+&lt;!--   addCircles(lng = ~lg_wildfires$longitude, --&gt;
+&lt;!--              lat = ~lg_wildfires$latitude, --&gt;
+&lt;!--              label = ~lg_wildfires$stat_cause_descr, ~lg_wildfires$disc_pre_year, --&gt;
+&lt;!--              radius = ~lg_wildfires$wf_rad_mi, --&gt;
+&lt;!--              color = wf_pal(lg_wildfires$fire_size_class), --&gt;
+&lt;!--              stroke = FALSE, --&gt;
+&lt;!--              fillOpacity = 0.7, --&gt;
+&lt;!--              #clusterOptions = markerClusterOptions() --&gt;
+&lt;!--              ) --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ] --&gt;
 
-1. There should not be spaces after the opening `$` or before the closing `$`.
+&lt;!-- --- --&gt;
+&lt;!-- #Relating global CO2 levels with increasing temperature --&gt;
 
-1. Math does not work on the title slide (see [#61](https://github.com/yihui/xaringan/issues/61) for a workaround).
 
----
 
-# Feeling adventurous?
+&lt;!-- ```{r recent_co2, fig.alt="Mauna Loa CO2 levels (ppm) of last 60 years. Shows seasonal variability and distinct exponential increase.", echo=FALSE} --&gt;
 
-- Want to find out more about `xaringan`? See https://slides.yihui.name/xaringan/#1.
+&lt;!-- global_co2 %&gt;% --&gt;
+&lt;!--   mutate(Date = as.Date(Date)) %&gt;% --&gt;
+&lt;!-- ggplot(mapping = aes(x = Date, y = co2_ppm)) + --&gt;
+&lt;!--   geom_line() + --&gt;
+&lt;!--   geom_smooth(color = "red", se = FALSE) + --&gt;
+&lt;!--   theme_bw() + --&gt;
+&lt;!--   scale_x_date(date_labels = "%Y %b %d") + --&gt;
+&lt;!--   labs(title = "Mauna Loa CO2 levels", --&gt;
+&lt;!--        subtitle = "Since 1958", --&gt;
+&lt;!--        x = "Date", --&gt;
+&lt;!--        y = "CO2 levels (ppm)") --&gt;
+&lt;!-- ``` --&gt;
 
-- You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
+&lt;!-- --- --&gt;
+&lt;!-- #CO2 level increase over the past 800 thousand years --&gt;
+&lt;!-- .pull-right[ --&gt;
+&lt;!-- - Earth has historically been in this range --&gt;
+&lt;!-- &lt;- Since the industrial revolution we are now here --&gt;
+&lt;!-- ] --&gt;
 
-- But some of you might want to play around with slide styling. The 
-`xaringanthemer` provides some solutions for this that: https://pkg.garrickadenbuie.com/xaringanthemer.
+&lt;!-- .pull-left[ --&gt;
 
-- And if you want more bells and whistles, there is also `xaringanExtra`: https://pkg.garrickadenbuie.com/xaringanExtra.
+
+&lt;!-- ```{r global_co2, fig.alt="Global CO2 levels (ppm) of last 800 thousand years from ice cores. Big spike at onset of industrial revolution and still rising today.", echo=FALSE} --&gt;
+
+&lt;!-- global_co2 %&gt;% --&gt;
+&lt;!--   mutate(ageKa = Age_yrBP/1000) %&gt;% --&gt;
+&lt;!-- ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) + --&gt;
+&lt;!--   geom_line() + --&gt;
+&lt;!--   scale_x_reverse() + --&gt;
+&lt;!--   theme_bw() + --&gt;
+&lt;!--    labs(title = "Global CO2 levels", --&gt;
+&lt;!--       subtitle = "Over the past 800ka", --&gt;
+&lt;!--       x = "Age (Ka BP)", --&gt;
+&lt;!--       y = "CO2 levels (ppm)") --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ] --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- #Thank you and Questions --&gt;
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

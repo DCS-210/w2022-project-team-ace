@@ -233,10 +233,11 @@ wildfires <- wildfires %>%
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
   geom_density() +
-  labs(title = "Histogram of wildfires",
+  labs(title = "Line Graph of wildfires",
        subtitle = "From 1991 to 2015",
        x = "Year",
-       y = "Count")
+       y = "Count") +
+  scale_color_viridis_c()
 ```
 
     ## Warning: Removed 8 rows containing non-finite values (stat_density).
@@ -252,7 +253,8 @@ US_temp %>%
     labs(title = "Temperature in San Fransisco, Ca",
          subtitle = "Over the past sesquintennial",
          x = "Year",
-         y = "Average Temperature")
+         y = "Average Temperature") +
+  scale_color_viridis_c()
 ```
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
@@ -271,10 +273,25 @@ disaster_data %>%
     labs(title = "Histogram of major disasters",
          subtitle = "By disaster type",
          x = "Year",
-         y = "Count")
+         y = "Count") +
+  scale_color_viridis_c()
 ```
 
 ![](proposal_files/figure-gfm/disaster-hist-1.png)<!-- -->
+
+``` r
+disaster_data %>%
+ggplot(mapping = aes(x = fy_declared)) +
+  geom_density() + 
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(title = "Histogram of major disasters",
+       subtitle = "By disaster type",
+       x = "Year",
+       y = "Count") +
+  scale_color_viridis_c()
+```
+
+![](proposal_files/figure-gfm/disaster-hist-2.png)<!-- -->
 
 ``` r
 lg_wildfires <- wildfires %>%
@@ -306,13 +323,14 @@ ggplot(data = sea_lvl,
        mapping = aes(x = Year, 
                      y = GMSL_noGIA)) + 
   geom_point() + 
-  geom_line(aes(y = avg_GMSL_per_year, color = "red")) +
-  geom_point(aes(y = avg_GMSL_per_year, color = "orange")) +
+  geom_line(aes(y = avg_GMSL_per_year, color = "#edf8b1")) +
+  geom_point(aes(y = avg_GMSL_per_year, color = "yellow")) +
   geom_smooth() +
   labs(title = "Global mean sea level rise",
        subtitle = "Relative to 2006",
        x = "Year",
-       y = "Global Mean Sea Level (mm)")
+       y = "Global Mean Sea Level (mm)") +
+  scale_color_viridis_d()
 ```
 
     ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
@@ -325,7 +343,7 @@ US_temp_pop %>%
   select(dt, AverageTemperature, City, State, Population_2016) %>%
   ggplot(mapping = aes(x = dt, 
                        y = AverageTemperature)) + 
-    geom_smooth() + 
+    geom_smooth(method = "lm", se = FALSE) + 
     labs(title = "Temperature in Large Cities in the US",
          subtitle = "Over the past sesquintennial, filtered for cities with pop > 1000000",
          x = "Year",
@@ -333,7 +351,7 @@ US_temp_pop %>%
     facet_wrap( ~ City)
 ```
 
-    ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'
+    ## `geom_smooth()` using formula 'y ~ x'
 
     ## Warning: Removed 353 rows containing non-finite values (stat_smooth).
 
@@ -367,7 +385,7 @@ lg_wildfires %>%
           zoom = 4) %>%
   addCircles(lng = ~lg_wildfires$longitude, 
              lat = ~lg_wildfires$latitude, 
-             label = ~lg_wildfires$stat_cause_descr, 
+             label = ~lg_wildfires$stat_cause_descr, ~lg_wildfires$disc_pre_year, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
              stroke = FALSE,
@@ -398,7 +416,7 @@ m1
 
     ## parsnip model object
     ## 
-    ## Fit time:  4ms 
+    ## Fit time:  3ms 
     ## 
     ## Call:
     ## stats::lm(formula = Year ~ GMSL_GIA, data = data)
@@ -449,7 +467,7 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
   labs(title = "Mauna Loa CO2 levels",
        subtitle = "Since 1958",
        x = "Date",
-       y = "CO2 levels (ppm)")
+       y = "CO2 levels (ppm)") 
 ```
 
     ## `geom_smooth()` using method = 'gam' and formula 'y ~ s(x, bs = "cs")'

@@ -153,6 +153,18 @@ disaster_data %>%
          x = "Year",
          y = "Count") +
   scale_color_viridis_c()
+
+disaster_data %>%
+ggplot(mapping = aes(x = fy_declared)) +
+  geom_density() + 
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(title = "Histogram of major disasters",
+       subtitle = "By disaster type",
+       x = "Year",
+       y = "Count") +
+  scale_color_viridis_c()
+
+
 ```
 
 ```{r large-wildfires}

@@ -125,6 +125,7 @@ Rows: 754
 
 ## Global CO2 data
 File name: co2_data.csv
+
 [Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
 Columns: 6
 Rows: 1346 

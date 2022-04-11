@@ -12,26 +12,10 @@ Climate change is an ever increasing concern for humanity as we continue to rely
   
   The linear regression formulated from mean sea level rise reveals that global mean sea levels are rising at approximately .318mm/year.. At this current rate, coastal communities like Miami beaches could be completely submerged by 2100( Castro, Alejandro).  While this rate was formulated based on current data, it is likely that this rate will increase in the coming years as the rate of CO2 emissions is increasing exponentially. This is evident both in our visualization of the Mauna Loa CO2 levels, and also in our figure depicting the Global CO2 levels over the past 800 thousand years, in which we find a sharp spike in the CO2 levels in ppm at the dawn of the industrial revolution. 
  	
- 	In concordance with rising CO2 levels, there is also a linear increase in the average temperature of cities in the US with a population over one million. Higher temperatures increase risk to areas with drier climates as periods of heat waves last longer. This in turn increases the risk of drought in the area along with the probability of wildfires. Our line plot showing the large wildfires per year from 1990-2015 portrays an increase concurrent with rising temperatures. Most strikingly, the leaflet plot visualizing large wildfires across the US outlines that wildfires are a much more serious concern on the west coast and in Alaska compared to the east coast. 
+   In concordance with rising CO2 levels, there is also a linear increase in the average temperature of cities in the US with a population over one million. Higher temperatures increase risk to areas with drier climates as periods of heat waves last longer. This in turn increases the risk of drought in the area along with the probability of wildfires. Our line plot showing the large wildfires per year from 1990-2015 portrays an increase concurrent with rising temperatures. Most strikingly, the leaflet plot visualizing large wildfires across the US outlines that wildfires are a much more serious concern on the west coast and in Alaska compared to the east coast. 
 
-	Between rising sea levels, increasing rates of wildfires, and higher CO2 levels in our atmosphere, it is clear that as we continue to rely on fossil fuels to power our lives, we pay a higher price each day by risking more frequent and catastrophic natural disasters. 
+   Between rising sea levels, increasing rates of wildfires, and higher CO2 levels in our atmosphere, it is clear that as we continue to rely on fossil fuels to power our lives, we pay a higher price each day by risking more frequent and catastrophic natural disasters. 
 
-<!-- ```{r load-data, echo = FALSE} -->
-<!-- # load data here, if you like -->
-<!-- ``` -->
-<!-- ## Presentation -->
-
-<!-- Our presentation can be found [here](presentation/presentation.html). -->
-
-<!-- ## Data -->
-
-
-
-#<img src="README_files/figure-gfm/unnamed-chunk-1-1.png" title="Density plot of natural disasters. Shows increase from 1950 to present" alt="Density plot of natural disasters. Shows increase from 1950 to present"  />
-
-#<img src="README_files/figure-gfm/global_co2-1.png" title="Global CO2 levels (ppm) of last 800 thousand years from ice cores. Big spike at onset of industrial revolution and still rising today." alt="Global CO2 levels (ppm) of last 800 thousand years from ice cores. Big spike at onset of industrial revolution and still rising today."  />
-
-#<img src="README_files/figure-gfm/recent_co2-1.png" title="Mauna Loa CO2 levels (ppm) of last 60 years. Shows seasonal variability and distinct exponential increase." alt="Mauna Loa CO2 levels (ppm) of last 60 years. Shows seasonal variability and distinct exponential increase."  />
 
 ## Presentation
 

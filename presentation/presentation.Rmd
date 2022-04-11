@@ -156,7 +156,7 @@ ggplot(data = sea_lvl,
 
 ```{r linear-regression-modeling-on-SLR}
 US_temp_pop <- US_temp_pop %>%
-  filter(Population_2016 >= 1000000)%>%
+  filter(Population_2016 >= 1000000) %>%
   m1 <- linear_reg() %>% # Select Model Type
          set_engine("lm") %>% # Set engine
          fit(AverageTemperature ~ City, data = US_temp_pop) #code kept crashing so switched to sea_lvl instead
@@ -183,7 +183,7 @@ ggplot(aes(x = Year, y = GMSL_GIA)) +
 
 ---
 
-```{r disaster-hist}
+```{r disaster-hist, fig.alt="Density plot of natural disasters. Shows increase from 1950 to present"}
 disaster_data %>%
   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon",
 "Volcano")) %>%
@@ -196,6 +196,17 @@ disaster_data %>%
          subtitle = "By disaster type",
          x = "Year",
          y = "Count") +
+  scale_color_viridis_c()
+
+
+disaster_data %>% #this graph is probably good to show on the side
+ggplot(mapping = aes(x = fy_declared)) +
+  geom_density() + 
+  theme(axis.text.x = element_text(angle = 45)) + 
+  labs(title = "Histogram of major disasters",
+       subtitle = "By disaster type",
+       x = "Year",
+       y = "Count") +
   scale_color_viridis_c()
 ```
 
@@ -234,7 +245,7 @@ lg_wildfires %>%
 ---
 
 
-```{r recent_co2}
+```{r recent_co2, fig.alt="Mauna Loa CO2 levels (ppm) of last 60 years. Shows seasonal variability and distinct exponential increase."}
 global_co2 %>%
   mutate(Date = as.Date(Date)) %>%
 ggplot(mapping = aes(x = Date, y = co2_ppm)) + 
@@ -252,7 +263,7 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
 
 ---
 
-```{r global_co2}
+```{r global_co2, fig.alt="Global CO2 levels (ppm) of last 800 thousand years from ice cores. Big spike at onset of industrial revolution and still rising today."}
 global_co2 %>%
   mutate(ageKa = Age_yrBP/1000) %>%
 ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) + 

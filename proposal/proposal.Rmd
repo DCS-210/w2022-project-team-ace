@@ -118,7 +118,7 @@ wildfires <- wildfires %>%
 ggplot(data = wildfires,
        mapping = aes(x = disc_pre_year)) + 
   geom_density() +
-  labs(title = "Histogram of wildfires",
+  labs(title = "Line Graph of wildfires",
        subtitle = "From 1991 to 2015",
        x = "Year",
        y = "Count") +
@@ -195,7 +195,7 @@ US_temp_pop %>%
   select(dt, AverageTemperature, City, State, Population_2016) %>%
   ggplot(mapping = aes(x = dt, 
                        y = AverageTemperature)) + 
-    geom_smooth() + 
+    geom_smooth(method = "lm", se = FALSE) + 
     labs(title = "Temperature in Large Cities in the US",
          subtitle = "Over the past sesquintennial, filtered for cities with pop > 1000000",
          x = "Year",
@@ -251,7 +251,7 @@ lg_wildfires %>%
           zoom = 4) %>%
   addCircles(lng = ~lg_wildfires$longitude, 
              lat = ~lg_wildfires$latitude, 
-             label = ~lg_wildfires$stat_cause_descr, 
+             label = ~lg_wildfires$stat_cause_descr, ~lg_wildfires$disc_pre_year, 
              radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
              stroke = FALSE,
@@ -312,7 +312,5 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
        y = "CO2 levels (ppm)") 
 ```
 
-```{r}
 
-```
 

@@ -84,7 +84,7 @@ US_temp_pop <- left_join(x = US_temp,
 ```
 
 ---
-class: inverse, center, middle
+class: center, middle
 
 # Average US Temperatures
 
@@ -161,10 +161,12 @@ ggplot(data = sea_lvl,
 
 ```
 ]
---- 
-#Linear Model of Global Mean Sea level rise and US temperature and Population 
+---
 
-.pull-right[  
+--- 
+
+#Linear modelling and Global Mean Sea level rise and US temperature and Population 
+
 ```{r linear-regression-modeling-on-SLR, echo=FALSE}  
 US_temp_pop <- US_temp_pop %>%  
     filter(Population_2016 >= 1000000)
@@ -178,7 +180,15 @@ m2 <- linear_reg() %>% # Select Model Type
         set_engine("lm") %>% # Set engine  
         fit(Year ~ GMSL_GIA , data = sea_lvl)  
 ```  
+.pull-left[  
 
+* A linear model helps us predict mean global sea level  
+
+* GMSL_GIA = (0.318)year + 2004.781
+
+* Adjusted R-squared value  = `r round(glance(m2)[2]$adj.r.squared, 3)`
+]  
+.pull-right[
 ```{r sea-level-regression-mapping, echo=FALSE}  
   sea_lvl %>%  
   ggplot(aes(x = Year, y = GMSL_GIA)) +  
@@ -190,21 +200,16 @@ m2 <- linear_reg() %>% # Select Model Type
         x = "Year",  
         y = "Global Mean Sea Level")  
 ```  
-]  
+]
+--- 
 
-.pull-left[  
-
-* A linear model helps us predict mean global sea level  
-
-* GMSL_GIA = (0.318)year + 2004.781
-
-* Adjusted R-squared value  = `r round(glance(m2)[2]$adj.r.squared, 3)`
-]  
+---
 
 ---  
-class: inverse, middle, center
 #Visualizing the Increase in Disasters Throughout the US
 
+
+.pull-left[
 ```{r disaster-hist, fig.alt="Density plot of natural disasters. Shows increase from 1950 to present", echo=FALSE} 
 
  disaster_data %>% 
@@ -220,28 +225,26 @@ class: inverse, middle, center
           x = "Year", 
           y = "Count") + 
    scale_color_viridis_c() 
+```
+]
 
-
+.pull-right[
+```{r linegraph of disasters, echo = FALSE}
  disaster_data %>% #this graph is probably good to show on the side 
  ggplot(mapping = aes(x = fy_declared)) + 
    geom_density() + 
    theme(axis.text.x = element_text(angle = 45)) + 
-   labs(title = "Histogram of major disasters", 
+   labs(title = "Linegraph of major disasters", 
         subtitle = "By disaster type", 
         x = "Year", 
         y = "Count") + 
    scale_color_viridis_c() 
 ``` 
-
+]
 
 ---
 #Leaflet Mapping of Large WildFires in the US
-.pull-left[
- - wildfires have caused $X amount of damage to communities
- 
- - can be prevented with $X amount of preventative work
-]
-.pull-right[
+
 ```{r, echo = FALSE}
 US_temp_pop <- US_temp_pop %>%
   mutate(Latitude = str_remove_all(Latitude, "[NESW]"),
@@ -271,7 +274,12 @@ wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
              #clusterOptions = markerClusterOptions()
              )
 ```
-]
+
+---
+# What we can do to prevent Wildfires:
+-  Chenemi's stuff
+- more of Chenemi's stuff
+
 
 ---
 #Relating global CO2 levels with increasing temperature

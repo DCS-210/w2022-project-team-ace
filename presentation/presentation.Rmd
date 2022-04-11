@@ -252,6 +252,7 @@ US_temp_pop <- US_temp_pop %>%
   mutate(Longitude = Longitude * -1)
 ```
 
+
 ```{r wildfires-by-size, echo = FALSE}
 wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
 

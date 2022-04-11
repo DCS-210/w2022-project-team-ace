@@ -416,7 +416,7 @@ m1
 
     ## parsnip model object
     ## 
-    ## Fit time:  3ms 
+    ## Fit time:  2ms 
     ## 
     ## Call:
     ## stats::lm(formula = Year ~ GMSL_GIA, data = data)

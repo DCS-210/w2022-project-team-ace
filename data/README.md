@@ -121,6 +121,8 @@ Rows: 754
 - `Population Density` - Info on the population density of each city 
 - `2016 Population` - total population of the city in 2016
 - `Land Area` - describes the total size of the city in square miles. 
+<<<<<<< HEAD
+=======
 
 
 ## Global CO2 data
@@ -137,5 +139,6 @@ This data is not tidy. The first 3 columns are data for Ice cores, the last 3 ar
 - `Date` - Date of data recorded
 - `co2_ppm` - Parts per million CO2
 - `Source` - Location of data
+>>>>>>> beffeaf5b0c58f8743b4e4da6e060ada74c12c82
 
 

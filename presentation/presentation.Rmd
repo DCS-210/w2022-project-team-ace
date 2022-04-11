@@ -317,6 +317,17 @@ ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) +
 ]
 
 ---
+# Effects/ Impacts 
+Reliable cartoon of statistics on climate change
+1. People Displaced
+2. Food Insecurity
+3. Fresh water scarcity
+
+---
+# Future Work 
+What efforts are being made by organizations?
+What individual efforts can we make?
+---
 #Thank you and Questions
 
 <!-- ??? -->

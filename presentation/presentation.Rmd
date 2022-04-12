@@ -297,7 +297,7 @@ class: inverse, center, middle
 ---
 
 # Global CO2 levels and Increasing Temperature
-
+.pull-left[
 ```{r recent_co2, fig.alt="Mauna Loa CO2 levels (ppm) of last 60 years. Shows seasonal variability and distinct exponential increase.", echo = FALSE}
 
 global_co2 %>%
@@ -312,6 +312,14 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
        x = "Date",
        y = "CO2 levels (ppm)")
 ```
+]
+
+.pull-right[
+* Distinct increase in CO2 over last 60 years.
+* Seasonal variability is shown by non-smooth curve
+* Today's CO2 level: 418.64 ppm
+]
+
 
 ---
 class: inverse, center, middle

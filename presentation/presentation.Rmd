@@ -339,6 +339,15 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
 class: inverse, center, middle
 
 # CO2 level increase over the past 800 thousand years
+## The Keeling Curve
+
+
+.pull-right[
+* Earth has historically been below 275 ppm
+* Since the industrial revolution we are now by far at the highest CO2 level(ppm) in Earth's history
+* This cyclic sawtooth pattern is due to the rapid warming and slow cooling of the earth caused by Milankovitch cycles (orbital forcings)
+]
+
 
 .pull-left[
 ```{r global_co2, fig.alt="Global CO2 levels (ppm) of last 800 thousand years from ice cores. Big spike at onset of industrial revolution and still rising today.", echo = FALSE}

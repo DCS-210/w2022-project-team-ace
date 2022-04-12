@@ -146,4 +146,7 @@ File name: co2_data.csv
 
 Castro, Alejandro. “Miami Underwater.” ArcGIS StoryMaps, Esri, 4 Dec. 2020, https://storymaps.arcgis.com/stories/80d2465cd19c405f933e9afcfe1fdf83. 
 
+[Climate Image](https://climate.nasa.gov/solutions/adaptation-mitigation/)
+[Water Scarcity](https://www.worldwildlife.org/threats/water-scarcity)
+
 

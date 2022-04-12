@@ -81,6 +81,7 @@ US_temp_pop <- left_join(x = US_temp,
 ```
 
 ---
+class: inverse
 # Where does our Data come from?
 
 .pull-left[
@@ -98,7 +99,7 @@ for our plots
 ]
 
 ---
-
+class: inverse
 # Average US Temperatures
 ```{r temp-large-cities, echo = FALSE, out.height=525, out.width=1800, fig.alt="faceted figure showing increasing temperatures in cities with over 1 million population since the 1700's"}
 US_temp_pop %>%
@@ -117,7 +118,7 @@ US_temp_pop %>%
 
 
 ---
-class: center, middle
+class: inverse, center, middle
 
 # Number of Wildfires since 1992
 
@@ -146,7 +147,7 @@ lg_wildfires %>%
 
 
 ---
-class: center, middle
+class: inverse, center, middle
 
 # How has the global sea level increased?
 .pull-left[ 
@@ -182,9 +183,12 @@ ggplot(data = sea_lvl,
 
 --- 
 
+
 ---
 
+class: inverse
 --- 
+
 # Linear modelling and Global Mean Sea level rise and US temperature and Population 
 
 .pull-left[  
@@ -226,6 +230,7 @@ m2 <- linear_reg() %>% # Select Model Type
 ]
 
 ---
+class: inverse
 
 --- 
 
@@ -309,6 +314,7 @@ class: inverse, center, middle
 
 
 ---
+class: inverse
 
 # Global CO2 levels and Increasing Temperature
 .pull-left[
@@ -372,7 +378,7 @@ ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) +
 - Since the industrial revolution we are now at the highest CO2 level(ppm) in Earth's history
 ]
 ---
-class: center, middle
+class: inverse, center, middle
 
 # Effects/ Impacts 
 Reliable cartoon of statistics on climate change
@@ -381,14 +387,14 @@ Reliable cartoon of statistics on climate change
 3. Fresh water scarcity
 
 ---
-class: center, middle
+class: inverse, center, middle
 
 # Future Work 
 What efforts are being made by organizations?
 What individual efforts can we make?
 
 ---
-class: center, middle
+class: inverse, center, middle
 
 # Thank you and Questions
 

@@ -85,7 +85,7 @@ class: inverse
 # Where does our Data come from?
 
 .pull-left[
-```{r dataset-image, echo = FALSE, out.height = 350, out.width = 350, fig.align = 'left', fig.alt="drastic climate changes across the landscape"}
+```{r dataset-image, echo = FALSE, out.height = 350, out.width = 460, fig.align = 'left', fig.alt="drastic climate changes across the landscape"}
 knitr::include_graphics("img/climate.jpg")
 ```
 ]
@@ -216,7 +216,7 @@ m2 <- linear_reg() %>% # Select Model Type
 
 * A linear model helps us predict mean global sea level  
 
-* GMSL_GIA = (0.318)year + 2004.781
+* GMSL_GIA = (2.833)year - 5679.441, (mm/yr)
 
 * Adjusted R-squared value  = `r round(glance(m2)[2]$adj.r.squared, 3)`
 

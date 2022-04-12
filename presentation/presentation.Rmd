@@ -1,5 +1,4 @@
 ---
-theme: jekyll-theme-minimal
 title: "The World is Changing"
 subtitle: "An Analysis of Rising Temperatures and All The Fun That Comes with It"
 author: "Team ACE <br> Austin Gilbride, Chenemi Maji, Evan Saltman"
@@ -7,7 +6,7 @@ institute: "Bates College"
 date: "April 11, 2022"
 output:
   xaringan::moon_reader:
-    css: xaringan-themer-ace.css
+    css: xaringan-themer.css
     lib_dir: libs
     nature:
       ratio: "16:9"
@@ -61,18 +60,17 @@ global_co2 <- readr::read_csv(file = "../data/co2_data.csv")
 
 ```{r, echo = FALSE}
 style_xaringan(
-
   title_slide_background_image = "img/globe_image_map.jpeg",
-  title_slide_text_color = "#FF0000",
+  title_slide_text_color = "#000000",
   title_slide_background_color = "#595959",
   title_slide_background_size = "contain"
   )
 ```
 
-
+---
 class: center, middle
 
-#How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
+# How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
 
 
 ```{r include=FALSE, echo = FALSE}
@@ -105,14 +103,16 @@ US_temp_pop %>%
 ```
 
 ---
-class: inverse, center, middle
+class: center, middle
 
-#Number of Wildfires since 1992
+# Number of Wildfires since 1992
+
 .pull-left[
 
 * Wildfire prevention efforts
 
 * Number of Wildfires vs Acreage burned
+
 ]
 
 .pull-right[
@@ -131,14 +131,10 @@ lg_wildfires %>%
 ]
 
 ---
-#How has the global sea level increased?
-.pull-left[
+class: center, middle
 
-* Sea level has continued to increase at faster and faster rates.
+# How has the global sea level increased?
 
-* In concordance with increasing CO2 levels
-]
-.pull-right[
 ```{r sea level rise cleaning, echo = FALSE}
 sea_lvl <- sea_lvl %>%
   group_by(Year) %>%
@@ -160,12 +156,19 @@ ggplot(data = sea_lvl,
   scale_color_viridis_d()
 
 ```
-]
----
+
+* Sea level has continued to increase at faster and faster rates.
+
+* In concordance with increasing CO2 levels
+
+
 
 --- 
+class: center, middle
 
-#Linear modelling and Global Mean Sea level rise and US temperature and Population 
+# Linear modelling and Global Mean Sea level rise and US temperature and Population 
+
+.pull-left[  
 
 ```{r linear-regression-modeling-on-SLR, echo=FALSE}  
 US_temp_pop <- US_temp_pop %>%  
@@ -180,14 +183,16 @@ m2 <- linear_reg() %>% # Select Model Type
         set_engine("lm") %>% # Set engine  
         fit(Year ~ GMSL_GIA , data = sea_lvl)  
 ```  
-.pull-left[  
+
 
 * A linear model helps us predict mean global sea level  
 
 * GMSL_GIA = (0.318)year + 2004.781
 
 * Adjusted R-squared value  = `r round(glance(m2)[2]$adj.r.squared, 3)`
+
 ]  
+
 .pull-right[
 ```{r sea-level-regression-mapping, echo=FALSE}  
   sea_lvl %>%  
@@ -201,12 +206,11 @@ m2 <- linear_reg() %>% # Select Model Type
         y = "Global Mean Sea Level")  
 ```  
 ]
+
 --- 
-
----
-
----  
-#Visualizing the Increase in Disasters Throughout the US
+class: inverse, center, middle
+ 
+# Visualizing the Increase in Disasters Throughout the US
 
 
 .pull-left[
@@ -243,7 +247,9 @@ m2 <- linear_reg() %>% # Select Model Type
 ]
 
 ---
-#Leaflet Mapping of Large WildFires in the US
+class: inverse, center, middle
+
+# Leaflet Mapping of Large WildFires in the US
 
 ```{r, echo = FALSE}
 US_temp_pop <- US_temp_pop %>%
@@ -276,13 +282,17 @@ wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
 ```
 
 ---
+class: inverse, center, middle
+
 # What we can do to prevent Wildfires:
 -  Chenemi's stuff
 - more of Chenemi's stuff
 
 
 ---
-#Relating global CO2 levels with increasing temperature
+class: inverse, center, middle
+
+# Relating global CO2 levels with increasing temperature
 
 
 ```{r recent_co2, fig.alt="Mauna Loa CO2 levels (ppm) of last 60 years. Shows seasonal variability and distinct exponential increase.", echo = FALSE}
@@ -301,10 +311,13 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
 ```
 
 ---
-#CO2 level increase over the past 800 thousand years
+class: inverse, center, middle
+
+# CO2 level increase over the past 800 thousand years
+
 .pull-right[
 - Earth has historically been in this range
-<- Since the industrial revolution we are now here
+- Since the industrial revolution we are now here
 ]
 
 .pull-left[
@@ -325,6 +338,8 @@ ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) +
 ]
 
 ---
+class: center, middle
+
 # Effects/ Impacts 
 Reliable cartoon of statistics on climate change
 1. People Displaced
@@ -332,11 +347,16 @@ Reliable cartoon of statistics on climate change
 3. Fresh water scarcity
 
 ---
+class: center, middle
+
 # Future Work 
 What efforts are being made by organizations?
 What individual efforts can we make?
+
 ---
-#Thank you and Questions
+class: center, middle
+
+# Thank you and Questions
 
 <!-- ??? -->
 <!-- <p align="center"> -->

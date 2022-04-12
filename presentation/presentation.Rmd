@@ -431,9 +431,6 @@ knitr::include_graphics("img/disaster relief.jpg")
 ]
 
 ---
-class: inverse
-
-# Future Work (continued)
 
 .pull-left[
 ### What individual efforts can we make?

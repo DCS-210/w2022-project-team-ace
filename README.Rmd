@@ -88,14 +88,6 @@ ggplot(mapping = aes(x = Date, y = co2_ppm)) +
 ```
 
 
-
-
-
-
-
-
-
-
 ## Presentation
 
 Our presentation can be found [here](presentation/presentation.html).

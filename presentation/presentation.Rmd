@@ -67,7 +67,7 @@ style_xaringan(
   )
 ```
 
----
+
 class: center, middle
 
 # How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
@@ -134,7 +134,13 @@ lg_wildfires %>%
 class: center, middle
 
 # How has the global sea level increased?
+.pull-left[ 
+* Sea level has continued to increase at faster and faster rates.
 
+* In concordance with increasing CO2 levels
+]
+
+.pull-right[ 
 ```{r sea level rise cleaning, echo = FALSE}
 sea_lvl <- sea_lvl %>%
   group_by(Year) %>%
@@ -156,16 +162,14 @@ ggplot(data = sea_lvl,
   scale_color_viridis_d()
 
 ```
-
-* Sea level has continued to increase at faster and faster rates.
-
-* In concordance with increasing CO2 levels
-
+]
 
 
 --- 
-class: center, middle
 
+---
+
+--- 
 # Linear modelling and Global Mean Sea level rise and US temperature and Population 
 
 .pull-left[  
@@ -183,7 +187,6 @@ m2 <- linear_reg() %>% # Select Model Type
         set_engine("lm") %>% # Set engine  
         fit(Year ~ GMSL_GIA , data = sea_lvl)  
 ```  
-
 
 * A linear model helps us predict mean global sea level  
 
@@ -207,9 +210,10 @@ m2 <- linear_reg() %>% # Select Model Type
 ```  
 ]
 
+---
+
 --- 
-class: inverse, center, middle
- 
+
 # Visualizing the Increase in Disasters Throughout the US
 
 
@@ -290,10 +294,8 @@ class: inverse, center, middle
 
 
 ---
-class: inverse, center, middle
 
-# Relating global CO2 levels with increasing temperature
-
+# Global CO2 levels and Increasing Temperature
 
 ```{r recent_co2, fig.alt="Mauna Loa CO2 levels (ppm) of last 60 years. Shows seasonal variability and distinct exponential increase.", echo = FALSE}
 
@@ -316,8 +318,11 @@ class: inverse, center, middle
 # CO2 level increase over the past 800 thousand years
 
 .pull-right[
+
+
 - Earth has historically been in this range
-- Since the industrial revolution we are now here
+
+- Since the industrial revolution we are now at the highest CO2 level(ppm) in Earth's history
 ]
 
 .pull-left[

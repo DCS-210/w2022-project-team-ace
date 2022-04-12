@@ -67,7 +67,6 @@ style_xaringan(
   )
 ```
 
-
 class: center, middle
 
 # How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
@@ -80,6 +79,23 @@ US_temp_pop <- left_join(x = US_temp,
                          y = US_pop,
                          by = "City")
 ```
+
+---
+# Where does our Data come from?
+
+.pull-left[
+```{r dataset-image, echo = FALSE, out.height = 350, out.width = 350, fig.align = 'left'}
+knitr::include_graphics("img/climate.jpg")
+```
+]
+
+.pull-right[
+* Most of our data comes from Kaggle
+
+* We combined sea level, temperature, disaster, population, and geographic data 
+for our plots
+
+]
 
 ---
 class: center, middle

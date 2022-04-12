@@ -425,7 +425,9 @@ class: inverse
 ]
 
 .pull-right[
-
+```{r dataset-image-relief, echo = FALSE, out.height = 350, out.width = 500, fig.align = 'left', fig.alt="Disaster relief"}
+knitr::include_graphics("img/disaster relief.jpg")
+```
 ]
 
 ---
@@ -442,7 +444,9 @@ class: inverse
 ]
 
 .pull-right[
-
+```{r dataset-image-less_carbon, echo = FALSE, out.height = 500, out.width = 350, fig.align = 'left', fig.alt="How to reduce carbon footprint"}
+knitr::include_graphics("img/reduce carbon footprint.jpg")
+```
 ]
 
 ---

@@ -108,11 +108,8 @@ class: center, middle
 # Number of Wildfires since 1992
 
 .pull-left[
-
 * Wildfire prevention efforts
-
 * Number of Wildfires vs Acreage burned
-
 ]
 
 .pull-right[

@@ -221,7 +221,7 @@ m2 <- linear_reg() %>% # Select Model Type
 * Adjusted R-squared value  = `r round(glance(m2)[2]$adj.r.squared, 3)`
 
 ]  
-
+ 
 .pull-right[
 ```{r sea-level-regression-mapping, echo=FALSE, fig.alt="increasing linear model of sea level rise from 1993 to 2012"}  
   sea_lvl %>%  

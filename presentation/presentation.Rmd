@@ -87,7 +87,7 @@ class: center, middle
 # Average US Temperatures
 
 
-```{r temp-large-cities, echo = FALSE}
+```{r temp-large-cities, echo = FALSE, fig.alt="faceted figure showing increasing temperatures in cities with over 1 million population since the 1700's"}
 US_temp_pop %>%
   filter(Population_2016 >= 1000000) %>% # cities with over 1 million population
   select(dt, AverageTemperature, City, State, Population_2016) %>%
@@ -116,7 +116,7 @@ class: center, middle
 ]
 
 .pull-right[
-```{r large-wildfires, echo = FALSE}
+```{r large-wildfires, echo = FALSE, fig.alt="density plot showing increase in wildfires since 1990"}
 lg_wildfires <- wildfires %>%
   filter(fire_size_class %in% c("D", "E", "F", "G"))
 lg_wildfires %>%
@@ -129,6 +129,7 @@ lg_wildfires %>%
          y = "Wildfire size (acres)")
 ```
 ]
+
 
 ---
 class: center, middle
@@ -147,7 +148,7 @@ sea_lvl <- sea_lvl %>%
   mutate(avg_GMSL_per_year = mean(GMSL_GIA))
 ```
 
-```{r sea level rise mapping, echo = FALSE}
+```{r sea level rise mapping, echo = FALSE, fig.alt="increasing non-linear model of sea level rise from 1993 to 2012"}  
 ggplot(data = sea_lvl,
        mapping = aes(x = Year,
                      y = GMSL_noGIA)) +
@@ -197,7 +198,7 @@ m2 <- linear_reg() %>% # Select Model Type
 ]  
 
 .pull-right[
-```{r sea-level-regression-mapping, echo=FALSE}  
+```{r sea-level-regression-mapping, echo=FALSE, fig.alt="increasing linear model of sea level rise from 1993 to 2012"}  
   sea_lvl %>%  
   ggplot(aes(x = Year, y = GMSL_GIA)) +  
     geom_point(alpha = 0.4) +  
@@ -237,7 +238,7 @@ m2 <- linear_reg() %>% # Select Model Type
 ]
 
 .pull-right[
-```{r linegraph of disasters, echo = FALSE}
+```{r linegraph of disasters, echo = FALSE, fig.alt="density plot of natural disasters since 1950. Shows significant increase"}
  disaster_data %>% #this graph is probably good to show on the side 
  ggplot(mapping = aes(x = fy_declared)) + 
    geom_density() + 
@@ -266,7 +267,7 @@ US_temp_pop <- US_temp_pop %>%
 ```
 
 
-```{r wildfires-by-size, echo = FALSE}
+```{r wildfires-by-size, echo = FALSE, fig.alt="Leaflet map showing locations, size, class, and cause across the US"}
 wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
 
   leaflet(data = lg_wildfires) %>%
@@ -276,10 +277,10 @@ wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
           zoom = 4) %>%
   addCircles(lng = ~lg_wildfires$longitude,
              lat = ~lg_wildfires$latitude,
-             #label = ~lg_wildfires$stat_cause_descr, ~lg_wildfires$disc_pre_year,
+             #label = ~lg_wildfires$stat_cause_descr,
              #radius = ~lg_wildfires$wf_rad_mi,
              color = wf_pal(lg_wildfires$fire_size_class),
-             #stroke = FALSE,
+             stroke = FALSE,
              fillOpacity = 0.7,
              #clusterOptions = markerClusterOptions()
              )

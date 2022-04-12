@@ -35,7 +35,7 @@ library(readr)
 
 ```{r setup, include=FALSE}
 # For better figure resolution
-knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "80%", message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "100%", message = FALSE, warning = FALSE)
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
@@ -67,7 +67,6 @@ style_xaringan(
   )
 ```
 
-
 class: center, middle
 
 # How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
@@ -82,12 +81,26 @@ US_temp_pop <- left_join(x = US_temp,
 ```
 
 ---
-class: center, middle
+# Where does our Data come from?
+
+.pull-left[
+```{r dataset-image, echo = FALSE, out.height = 350, out.width = 350, fig.align = 'left'}
+knitr::include_graphics("img/climate.jpg")
+```
+]
+
+.pull-right[
+* Most of our data comes from Kaggle
+
+* We combined sea level, temperature, disaster, population, and geographic data 
+for our plots
+
+]
+
+---
 
 # Average US Temperatures
-
-
-```{r temp-large-cities, echo = FALSE, fig.alt="faceted figure showing increasing temperatures in cities with over 1 million population since the 1700's"}
+```{r temp-large-cities, echo = FALSE, out.height=525, out.width=1800, fig.alt="faceted figure showing increasing temperatures in cities with over 1 million population since the 1700's"}
 US_temp_pop %>%
   filter(Population_2016 >= 1000000) %>% # cities with over 1 million population
   select(dt, AverageTemperature, City, State, Population_2016) %>%
@@ -99,8 +112,9 @@ US_temp_pop %>%
          x = "Year",
          y = "Average Temperature") +
     facet_wrap( ~ City)
-
 ```
+
+
 
 ---
 class: center, middle
@@ -324,11 +338,13 @@ class: inverse, center, middle
 # CO2 level increase over the past 800 thousand years
 ## The Keeling Curve
 
+
 .pull-right[
 * Earth has historically been below 275 ppm
 * Since the industrial revolution we are now by far at the highest CO2 level(ppm) in Earth's history
 * This cyclic sawtooth pattern is due to the rapid warming and slow cooling of the earth caused by Milankovitch cycles (orbital forcings)
 ]
+
 
 .pull-left[
 ```{r global_co2, fig.alt="Global CO2 levels (ppm) of last 800 thousand years from ice cores. Big spike at onset of industrial revolution and still rising today.", echo = FALSE}
@@ -346,6 +362,12 @@ ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) +
 ```
 ]
 
+.pull-right[
+
+- Earth has historically been in this range
+
+- Since the industrial revolution we are now at the highest CO2 level(ppm) in Earth's history
+]
 ---
 class: center, middle
 

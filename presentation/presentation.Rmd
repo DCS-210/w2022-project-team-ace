@@ -69,7 +69,7 @@ style_xaringan(
 
 class: center, middle
 
-# How do rising global temperatures broadly affect the frequency and severity of natural disasters? 
+# How do the frequency and severity of natural disasters such as wildfires and rising sea level change over time?
 
 
 ```{r include=FALSE, echo = FALSE}
@@ -103,6 +103,44 @@ knitr::include_graphics("img/climate.jpg")
 ]
 
 .footnote[image of multiple climates]
+---
+
+
+# Visualizing the Increase in Disasters Throughout the US
+
+
+.pull-left[
+```{r disaster-hist, fig.alt="Density plot of natural disasters. Shows increase from 1950 to present", echo=FALSE} 
+
+ disaster_data %>% 
+   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon", 
+ "Volcano")) %>% 
+   ggplot(mapping = aes(x = fy_declared)) + 
+     geom_histogram(binwidth = 10) + 
+     #geom_density() + 
+     facet_wrap( ~ incident_type) + 
+     theme(axis.text.x = element_text(angle = 45)) + 
+     labs(title = "Histogram of major disasters", 
+          subtitle = "By disaster type", 
+          x = "Year", 
+          y = "Count") + 
+   scale_color_viridis_c() 
+```
+]
+
+.pull-right[
+```{r linegraph of disasters, echo = FALSE, fig.alt="density plot of natural disasters since 1950. Shows significant increase"}
+ disaster_data %>% #this graph is probably good to show on the side 
+ ggplot(mapping = aes(x = fy_declared)) + 
+   geom_density() + 
+   theme(axis.text.x = element_text(angle = 45)) + 
+   labs(title = "Linegraph of major disasters", 
+        subtitle = "By disaster type", 
+        x = "Year", 
+        y = "Count") + 
+   scale_color_viridis_c() 
+``` 
+]
 ---
 class: inverse
 # Average US Temperatures
@@ -236,46 +274,6 @@ m2 <- linear_reg() %>% # Select Model Type
 ```  
 ]
 
----
-class: inverse
-
---- 
-
-# Visualizing the Increase in Disasters Throughout the US
-
-
-.pull-left[
-```{r disaster-hist, fig.alt="Density plot of natural disasters. Shows increase from 1950 to present", echo=FALSE} 
-
- disaster_data %>% 
-   filter(incident_type %in% c("Coastal Storm", "Drought", "Earthquake", "Fire", "Flood","Freezing", "Hurricane", "Mud/Landslide", "Severe Ice Storm","Severe Storm(s)", "Snow", "Tornado", "Tsunami", "Typhoon", 
- "Volcano")) %>% 
-   ggplot(mapping = aes(x = fy_declared)) + 
-     geom_histogram(binwidth = 10) + 
-     #geom_density() + 
-     facet_wrap( ~ incident_type) + 
-     theme(axis.text.x = element_text(angle = 45)) + 
-     labs(title = "Histogram of major disasters", 
-          subtitle = "By disaster type", 
-          x = "Year", 
-          y = "Count") + 
-   scale_color_viridis_c() 
-```
-]
-
-.pull-right[
-```{r linegraph of disasters, echo = FALSE, fig.alt="density plot of natural disasters since 1950. Shows significant increase"}
- disaster_data %>% #this graph is probably good to show on the side 
- ggplot(mapping = aes(x = fy_declared)) + 
-   geom_density() + 
-   theme(axis.text.x = element_text(angle = 45)) + 
-   labs(title = "Linegraph of major disasters", 
-        subtitle = "By disaster type", 
-        x = "Year", 
-        y = "Count") + 
-   scale_color_viridis_c() 
-``` 
-]
 
 ---
 class: inverse, center, middle

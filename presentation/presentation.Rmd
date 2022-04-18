@@ -254,7 +254,10 @@ m2 <- linear_reg() %>% # Select Model Type
 
 * A linear model helps us predict mean global sea level  
 
-* GMSL_GIA = (2.833)year - 5679.441mm
+
+
+* GMSL_GIA = (2.833)year - 5679.441, (mm/yr)
+
 
 * Adjusted R-squared value  = `r round(glance(m2)[2]$adj.r.squared, 3)`
 
@@ -386,7 +389,7 @@ ggplot(mapping = aes(x = ageKa, y = CO2_ppm)) +
 ]
 
 ---
-class: inverse, center, middle
+class: inverse
 
 # Sociological Impacts 
 .pull-left[
@@ -408,16 +411,47 @@ knitr::include_graphics("img/Water_scarcity.jpg")
 .footnote[water scarcity leads to barren soil]
 
 ---
-class: inverse, center, middle
+class: inverse
 
 # Future Work 
-What efforts are being made by organizations?
-What individual efforts can we make?
+
+.pull-left[
+###What efforts are being made by organizations?
+
+- NGOs that run charities for wildfire relief (Center for Disaster Philanthropy, American Red Cross, etc.)
+
+- FEMA (The Federal Emergency Management Agency) provides fire management assistance at various levels to help with mitigation, management and control (FEMA, 2022).
+
+- The global community of scientists interested attribution studies, continue to support us, organizations and individuals, with their research. 
+]
+
+.pull-right[
+```{r dataset-image-relief, echo = FALSE, out.height = 350, out.width = 500, fig.align = 'left', fig.alt="Disaster relief"}
+knitr::include_graphics("img/disaster relief.jpg")
+```
+]
+
+---
+
+.pull-left[
+### What individual efforts can we make?
+
+- Educate ourselves: Evolving research is available to support lawsuits from citizens against companies, industries and governments (Scientific American, 2018).
+
+- Make conscious efforts to reduce our carbon footprints as best as we can.
+]
+
+.pull-right[
+```{r dataset-image-less_carbon, echo = FALSE, out.height = 500, out.width = 350, fig.align = 'left', fig.alt="How to reduce carbon footprint"}
+knitr::include_graphics("img/reduce carbon footprint.jpg")
+```
+]
 
 ---
 class: inverse, center, middle
 
-# Thank you and Questions
+# Thank you!
+# Questions?
 
 <!-- ??? -->
 <!-- <p align="center"> -->

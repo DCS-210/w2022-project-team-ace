@@ -100,34 +100,19 @@ File name: US_temps.csv
 
 [Source](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data)
 
-US Disaster Data
-
-File name: us_disaster_declarations.csv
-
+US Disaster Data - File name: us_disaster_declarations.csv -
 [Source](https://www.kaggle.com/headsortails/us-natural-disaster-declarations/version/72)
 
-Wildfire Data
-
-File name: FW_Veg_Rem_Combined.csv
-
+Wildfire Data - File name: FW_Veg_Rem_Combined.csv -
 [Source](https://www.kaggle.com/capcloudcoder/us-wildfire-data-plus-other-attributes)
 
-Sea Level Data
-
-File name: sealevel.csv
-
+Sea Level Data - File name: sealevel.csv -
 [Source](https://www.kaggle.com/kkhandekar/global-sea-level-1993-2021)
 
-US city population density Data
-
-File name: uscitypopdensity.csv
-
+US city population density Data - File name: uscitypopdensity.csv -
 [Source](https://www.kaggle.com/mmcgurr/us-city-population-densities)
 
-Global CO2 data
-
-File name: co2_data.csv
-
+Global CO2 data - File name: co2_data.csv -
 [Source](https://keelingcurve.ucsd.edu/permissions-and-data-sources/)
 
 ## References
@@ -136,6 +121,7 @@ Castro, Alejandro. “Miami Underwater.” ArcGIS StoryMaps, Esri, 4
 Dec. 2020,
 <https://storymaps.arcgis.com/stories/80d2465cd19c405f933e9afcfe1fdf83>.
 
-[Climate
-Image](https://climate.nasa.gov/solutions/adaptation-mitigation/) [Water
-Scarcity](https://www.worldwildlife.org/threats/water-scarcity)
+-   [Climate
+    Image](https://climate.nasa.gov/solutions/adaptation-mitigation/)
+-   [Water
+    Scarcity](https://www.worldwildlife.org/threats/water-scarcity)

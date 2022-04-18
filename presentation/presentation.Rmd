@@ -104,7 +104,7 @@ knitr::include_graphics("img/climate.jpg")
 
 .footnote[image of multiple climates]
 ---
-
+class: inverse
 
 # Visualizing the Increase in Disasters Throughout the US
 
@@ -313,6 +313,26 @@ wf_pal <- colorFactor(palette = "YlOrRd", domain = lg_wildfires$fire_size_class)
              )
 ```
 
+---
+class: inverse
+# Conclusions
+
+.pull-left[
+
+- Manmade rise in CO2 is directly causing an increase in Temperature
+  * The rise in temperature can be seen in every major city in the US
+  * Rising temperatures are increasingly associated with wildfires, drought, and hurricanes
+
+- Rising temperature also has implications for our oceans, causing flooding in some areas and drought in others. 
+
+- The data let us know it is clear we must take action to prevent further damage from taking place. 
+]
+
+.pull-right[
+```{r earth-image, echo = FALSE, out.height = 350, out.width = 400, fig.align = 'left', fig.alt="drastic climate changes across the landscape"}
+knitr::include_graphics("img/earth_pic.webp")
+```
+]
 ---
 class: inverse, center, middle
 
